@@ -12,7 +12,8 @@ const app = express();
 
 // CORS
 app.use(cors({
-  origin: "http://localhost:3000",
+
+  origin: "https://splendorous-froyo-ada344.netlify.app",
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
