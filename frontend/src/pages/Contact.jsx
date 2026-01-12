@@ -15,10 +15,10 @@ export default function Contact() {
     message: ""
   });
        
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setForm({ ...form, [name]: value });
-  };
+  // const handleChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setForm({ ...form, [name]: value });
+  // };
   const submit = async () => {
     try {
       await axios.post("http://localhost:5000/api/inquiries/add", form);
@@ -58,13 +58,12 @@ export default function Contact() {
           onChange={(e) => setForm({ ...form, companyName: e.target.value })}
         />
 
-     <input
-  name="website" // Add name attribute
+ <input
   placeholder="Company Website"
   value={form.website}
-  onChange={handleChange} // Use the new function
+  // This tells React to save what you type into the 'website' property of your form state
+  onChange={(e) => setForm({ ...form, website: e.target.value })}
 />
-
         <input
           placeholder="Email ID"
           value={form.email}
