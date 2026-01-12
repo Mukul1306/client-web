@@ -17,6 +17,10 @@ app.use(cors({
   credentials: true
 }));
 
+app.get("/", (req, res) => {
+  res.status(200).send("Alyvra Pharmatech Backend API is Live and Running!");
+});
+
 // JSON body parser
 app.use(express.json());
 
@@ -50,8 +54,7 @@ mongoose
 /* =======================
    SERVER
 ======================= */
-
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server running on port ${PORT}`);
 });
