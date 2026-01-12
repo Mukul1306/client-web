@@ -1,0 +1,125 @@
+/* --- Global Contact Layout --- */
+.contact-page {
+  min-height: 100vh;
+  /* Soft architectural background blend */
+  background: radial-gradient(circle at top right, #f8fafc, #eff6ff, #ffffff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 20px;
+  font-family: 'Inter', sans-serif;
+}
+
+/* --- The Contact Card --- */
+.contact-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px); /* Modern glass effect */
+  max-width: 550px;
+  width: 100%;
+  padding: 50px;
+  border-radius: 24px;
+  /* Multi-layered soft shadow for premium depth */
+  box-shadow: 
+    0 4px 6px -1px rgba(0, 0, 0, 0.05), 
+    0 20px 25px -5px rgba(0, 0, 0, 0.05),
+    0 10px 10px -5px rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  animation: slideFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --- Header Styling --- */
+.contact-card h2 {
+  text-align: center;
+  color: #0f172a; /* Deep Slate for authority */
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-bottom: 8px;
+}
+
+.contact-card p {
+  text-align: center;
+  color: #64748b;
+  font-size: 1rem;
+  margin-bottom: 35px;
+  line-height: 1.5;
+}
+
+/* --- Form Fields --- */
+.contact-card input,
+.contact-card textarea {
+  width: 100%;
+  padding: 16px 18px;
+  margin-bottom: 18px;
+  border-radius: 12px;
+  background: #f8fafc; /* Subtle grey fill */
+  border: 1px solid #e2e8f0;
+  font-size: 15px;
+  color: #1e293b;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.contact-card textarea {
+  height: 130px;
+  resize: none;
+}
+
+/* --- High-Trust Focus State --- */
+.contact-card input:focus,
+.contact-card textarea:focus {
+  outline: none;
+  background: #ffffff;
+  border-color: #1f3c88; /* Corporate Blue */
+  box-shadow: 0 0 0 4px rgba(31, 60, 136, 0.1);
+  transform: scale(1.01);
+}
+
+/* --- Professional Button --- */
+.contact-card button {
+  width: 100%;
+  padding: 16px;
+  margin-top: 15px;
+  background: #1f3c88; /* Solid Brand Blue */
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 14px rgba(31, 60, 136, 0.3);
+}
+
+.contact-card button:hover {
+  background: #1a7f37; /* Success Green on hover for trust */
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(26, 127, 55, 0.3);
+}
+
+/* --- Animations --- */
+@keyframes slideFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 600px) {
+  .contact-card {
+    padding: 30px 20px;
+    margin: 15px;
+    border-radius: 20px;
+  }
+
+  .contact-card h2 {
+    font-size: 1.8rem;
+  }
+}

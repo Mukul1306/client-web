@@ -1,0 +1,176 @@
+/* ===== WRAPPER ===== */
+.about-wrapper {
+  padding: clamp(30px, 6vw, 70px) clamp(16px, 8vw, 10%);
+  background: linear-gradient(180deg, #f6fbff, #ffffff);
+  min-height: 100vh;
+}
+
+/* ===== HEADER ===== */
+.about-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.about-header img {
+  width: 100%;
+  height: 400px;
+
+  margin-bottom: 10px;
+}
+
+.about-header h1 {
+  font-size: clamp(26px, 4vw, 42px);
+  color: #1f3c88;
+}
+
+.about-header p {
+  font-size: clamp(14px, 2vw, 18px);
+  color: #555;
+}
+
+/* ===== TABS ===== */
+.about-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  background: #ffffff;
+  padding: 14px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+  margin-bottom: 30px;
+}
+
+.about-tabs button {
+  padding: 10px 18px;
+  border-radius: 12px;
+  border: none;
+  background: transparent;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+  color: #333;
+}
+
+.about-tabs button.active {
+  background: linear-gradient(135deg, #1f3c88, #3a6ff8);
+  color: white;
+}
+
+/* ===== CONTENT CARD ===== */
+.about-content-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: clamp(20px, 5vw, 40px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+}
+
+/* ===== SECTION ===== */
+.about-section {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.about-section img {
+  width: 280px;
+  border-radius: 16px;
+}
+
+/* ===== TEXT ===== */
+.about-section h2 {
+  font-size: clamp(20px, 3vw, 28px);
+  color: #1f3c88;
+}
+
+.about-section p {
+  font-size: clamp(14px, 1.6vw, 17px);
+  line-height: 1.8;
+  color: #444;
+}
+
+/* ===== VALUES ===== */
+.values-list {
+  margin-top: 15px;
+  padding-left: 20px;
+}
+
+.values-list li {
+  margin-bottom: 8px;
+  font-size: 15px;
+}
+
+/* ===== MANAGEMENT ===== */
+.management-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+  margin-top: 20px;
+}
+
+.manager-card {
+  background: #f8fbff;
+  border-radius: 16px;
+  padding: 20px;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.manager-card:hover {
+  transform: translateY(-6px);
+}
+
+.manager-card img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.manager-card h4 {
+  margin: 5px 0;
+  color: #1f3c88;
+}
+
+.manager-card span {
+  font-size: 14px;
+  color: #666;
+}
+
+/* ===== ANIMATION ===== */
+.fade {
+  animation: fadeUp 0.5s ease;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .about-section {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .about-section img {
+    width: 100%;
+    max-width: 320px;
+  }
+}
+@media (max-width: 480px) {
+  .about-tabs button {
+    font-size: 14px;
+    padding: 8px 14px;
+  }
+}
+@media (max-width: 350px) {
+  .about-wrapper {
+    padding: 20px 10px;
+  }
+}
+@media (max-width: 600px) {
+  .about-tabs {
+    gap: 8px;
+  }
+}

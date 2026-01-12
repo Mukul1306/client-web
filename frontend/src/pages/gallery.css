@@ -1,0 +1,131 @@
+/* --- Global Gallery Layout --- */
+.gallery-page {
+  max-width: 1400px; /* Slightly wider for a more cinematic feel */
+  margin: 0 auto;
+  padding: 80px 40px;
+  background-color: #ffffff;
+}
+
+/* --- Header Section --- */
+.gallery-page h1 {
+  color: #1f3c88; /* Your Brand Blue */
+  font-family: "Playfair Display", serif;
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+}
+
+.gallery-page .subtitle {
+  font-size: 1.1rem;
+  color: #64748b; /* Soft Slate */
+  font-family: "Inter", sans-serif;
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 60px auto;
+  line-height: 1.6;
+}
+
+/* --- The Modern Grid --- */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 32px;
+}
+
+/* --- Aesthetic Gallery Card --- */
+.gallery-card {
+  background: #ffffff;
+  border-radius: 24px; /* Softer, modern corners */
+  overflow: hidden;
+  position: relative;
+  border: 1px solid #f1f5f9;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 10px 15px -3px rgba(0, 0, 0, 0.03);
+  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.gallery-card:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 25px 50px -12px rgba(31, 60, 136, 0.15); /* Tinted brand shadow */
+}
+
+/* --- Optimized Image Wrapper --- */
+.gallery-image-wrapper {
+  overflow: hidden;
+  position: relative;
+  height: 280px; /* Increased height for impact */
+}
+
+.gallery-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.gallery-card:hover img {
+  transform: scale(1.1); /* Slower, elegant zoom */
+}
+
+/* --- Subtle Overlay for Texture --- */
+.gallery-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent 60%, rgba(31, 60, 136, 0.05));
+  pointer-events: none;
+}
+
+/* --- Card Content --- */
+.gallery-card-content {
+  padding: 24px;
+  background: #ffffff;
+  border-top: 1px solid #f8fafc;
+}
+
+.gallery-card-content h3 {
+  font-family: "Inter", sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 8px 0;
+  transition: color 0.3s ease;
+}
+
+.gallery-card:hover .gallery-card-content h3 {
+  color: #1f3c88; /* Name changes to brand blue on hover */
+}
+
+.gallery-card-content p {
+  font-family: "Inter", sans-serif;
+  font-size: 0.95rem;
+  color: #94a3b8;
+  margin: 0;
+  text-align: left; /* Keep card text left-aligned for better readability */
+}
+
+/* --- RESPONSIVE ADJUSTMENTS --- */
+@media (max-width: 1024px) {
+  .gallery-page { padding: 60px 30px; }
+  .gallery-page h1 { font-size: 2.5rem; }
+}
+
+@media (max-width: 768px) {
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  .gallery-page h1 { font-size: 2rem; }
+  .gallery-image-wrapper { height: 220px; }
+}
+
+@media (max-width: 480px) {
+  .gallery-page { padding: 40px 20px; }
+  .gallery-grid { grid-template-columns: 1fr; }
+  .gallery-page h1 { font-size: 1.8rem; }
+}

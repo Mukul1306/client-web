@@ -1,0 +1,222 @@
+.full-products-page {
+  padding-bottom: 80px;
+  background-color: #f8fafc;
+}
+
+.products-hero-section {
+  background: linear-gradient(135deg, #1f3c88 0%, #102a61 100%);
+  padding: 80px 8% 60px;
+  text-align: center;
+  color: white;
+  border-radius: 12px;
+}
+.search-wrapper
+{ background: linear-gradient(135deg, #1f3c88 0%, #102a61 100%);
+}
+.search-wrapper h1 { font-size: 2.5rem; margin-bottom: 10px; }
+.search-wrapper p { opacity: 0.8; margin-bottom: 30px; }
+
+.search-container {
+  position: relative;
+  max-width: 600px;
+ 
+  
+}
+
+.modern-search-input {
+  width: 100%;
+  padding: 16px 25px;
+  border-radius: 50px;
+  border: none;
+  font-size: 1rem;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* --- CATEGORY PILLS --- */
+.category-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.category-pill {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  padding: 10px 22px;
+  border-radius: 50px;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.category-pill .cat-name {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: white;
+}
+
+.category-pill:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.category-pill.active {
+  background: white;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.category-pill.active .cat-name {
+  color: #1f3c88;
+  font-weight: 700;
+}
+
+/* --- SECTION TITLE --- */
+.section-title { padding: 50px 8% 20px; }
+.title-flex { display: flex; align-items: center; gap: 20px; margin-bottom: 10px;}
+.count-badge { background: #e2e8f0; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; color: #1f3c88; }
+.accent-line { width: 60px; height: 4px; background: #1f3c88; border-radius: 2px; }
+
+/* --- GRID ADJUSTMENTS --- */
+.products-grid-full {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+  padding: 0 8%;
+}
+
+.featured-card {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  transition: 0.3s;
+}
+
+.featured-card:hover { transform: translateY(-10px); }
+
+.card-image-box { padding: 20px; background: #fdfdfd; display: flex; justify-content: center; height: 200px; }
+.card-image-box img { max-height: 100%; object-fit: contain; }
+
+.product-details { padding: 20px; }
+.tag-label { background: #eff6ff; color: #1f3c88; font-size: 11px; padding: 4px 10px; border-radius: 4px; font-weight: 700; text-transform: uppercase; }
+.card-meta { display: flex; gap: 10px; font-size: 0.85rem; color: #64748b; margin-top: 15px; font-weight: 600; }
+.divider { opacity: 0.3; }
+
+.card-footer { padding: 0 20px 20px; }
+.inquiry-btn { width: 100%; background: #1f3c88; color: white; border: none; padding: 12px; border-radius: 10px; font-weight: 700; cursor: pointer; }
+
+.filter-group {
+  margin-top: 25px;
+  text-align: center;
+}
+
+.filter-label {
+  color: #cbd5e1;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+}
+
+.category-grid-mini {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Specific styling for the therapeutic range */
+.mini-pill {
+  padding: 6px 14px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  color: #e2e8f0;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.mini-pill:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.mini-pill.active {
+  background: #2563eb;
+  border-color: #3b82f6;
+  color: white;
+}
+
+/* Category tags on cards */
+.tag-label {
+  background: #eff6ff;
+  color: #1e40af;
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  margin-right: 4px;
+  display: inline-block;
+}
+
+/* Container for the 'No Results' message */
+.no-results-box {
+  grid-column: 1 / -1; /* Makes it span the full width of the product grid */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  background: #f8fafc;
+  border: 2px dashed #cbd5e1;
+  border-radius: 16px;
+  margin: 40px auto;
+  max-width: 600px;
+  text-align: center;
+}
+
+/* Icon or text inside the box */
+.no-results-box p {
+  font-size: 1.2rem;
+  color: #64748b;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+/* The 'Clear All Filters' button */
+.no-results-box button {
+  background-color: #1f3c88; /* Matches your brand blue */
+  color: white;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(31, 60, 136, 0.2);
+}
+
+.no-results-box button:hover {
+  background-color: #162a61;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(31, 60, 136, 0.3);
+}
+
+.no-results-box button:active {
+  transform: translateY(0);
+}
+
+/* Responsive adjustment for small screens */
+@media (max-width: 768px) {
+  .no-results-box {
+    margin: 20px;
+    padding: 40px 15px;
+  }
+}

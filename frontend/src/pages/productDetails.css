@@ -1,0 +1,185 @@
+/* Container Layout */
+.product-details-container {
+  max-width: 1200px;
+  margin: 50px auto;
+  padding: 20px;
+  font-family: 'Inter', sans-serif;
+}
+
+.product-main-info {
+  display: flex;
+  gap: 50px;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  padding: 40px;
+  align-items: flex-start;
+}
+
+/* Left Side: Image */
+.image-section {
+  flex: 1;
+  border: 1px solid #f1f5f9;
+  border-radius: 15px;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+}
+
+.image-section img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+/* Right Side: Information */
+.info-section {
+  flex: 1.2;
+}
+
+.product-title {
+  font-size: 2.5rem;
+  color: #1f3c88;
+  margin-bottom: 15px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+/* Category Tags */
+.details-categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 25px;
+}
+
+.detail-tag {
+  background: #eff6ff;
+  color: #1e40af;
+  padding: 6px 14px;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border: 1px solid #dbeafe;
+}
+
+/* Specification Table */
+.details-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 30px;
+}
+
+.details-table td {
+  padding: 12px 0;
+  border-bottom: 1px solid #f1f5f9;
+  color: #475569;
+  font-size: 1rem;
+}
+
+.details-table td:first-child {
+  width: 180px;
+  color: #1e293b;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* Description Box */
+.description-box {
+  background: #f8fafc;
+  padding: 25px;
+  border-left: 5px solid #1f3c88;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+.description-box h3 {
+  font-size: 1.1rem;
+  color: #1e293b;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.description-box p {
+  line-height: 1.6;
+  color: #64748b;
+}
+
+/* Inquiry Button */
+.inquiry-btn-large {
+  width: 100%;
+  background: #1f3c88;
+  color: white;
+  padding: 18px;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(31, 60, 136, 0.3);
+}
+
+.inquiry-btn-large:hover {
+  background: #162a61;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(31, 60, 136, 0.4);
+}
+
+/* Loading & Error States */
+.loading {
+  text-align: center;
+  padding: 100px;
+  font-size: 1.5rem;
+  color: #1f3c88;
+  font-weight: 600;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .product-main-info {
+    flex-direction: column;
+    padding: 20px;
+  }
+  
+  .image-section, .info-section {
+    width: 100%;
+  }
+
+  .product-title {
+    font-size: 1.8rem;
+    margin-top: 20px;
+  }
+}
+.tag-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 5px 0;
+}
+
+/* Specific styling for the Division text */
+.division-text {
+  color: #1f3c88;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Modern Pill styling for Therapeutic Tags */
+.detail-tag {
+  background: #f1f5f9;
+  color: #475569;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border: 1px solid #e2e8f0;
+}
+
+.details-table td {
+  vertical-align: top; /* Ensures tags align with the label if they wrap */
+}

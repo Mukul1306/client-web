@@ -1,0 +1,158 @@
+/* Container for the horizontal list */
+.blogs-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-bottom: 50px;
+}
+
+/* Horizontal Card Layout */
+.blog-horizontal-card {
+  display: flex;
+  gap: 12px;
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  margin-bottom: 30px;
+  align-items: flex-start;
+  margin-top: 30px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.blog-horizontal-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* Image Styling */
+.blog-img-wrapper {
+  width: 350px;
+  height: 250px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.blog-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Content Area */
+.blog-content-wrapper {
+  flex: 1;
+  padding: 30px;
+}
+
+.blog-text-area h3 {
+  font-size: 22px;
+  color: #1a5d1a;
+  margin-bottom: 15px;
+  font-family: "Playfair Display", serif;
+}
+
+/* --- THE READ MORE LOGIC (FIXED) --- */
+
+.blog-description {
+  font-size: 15px;
+  line-height: 1.6; /* Changed from 1 to 1.6 so text doesn't overlap */
+  color: #555;
+  margin-bottom: 20px;
+  transition: all 0.4s ease;
+}
+
+
+
+/* State 2: Expanded (Shown) */
+.blog-description.expanded {
+  display: block; /* Removes the line-clamp limit */
+  overflow: visible;
+}
+
+/* Hyperlinks within content */
+.blog-description a {
+  color: #007bff !important;
+  text-decoration: underline !important;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.blog-description a:hover {
+  color: #0056b3 !important;
+}
+
+/* Button Styling */
+.read-more-btn {
+  background: #1a7f37;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 4px;
+  width: fit-content;
+  display: block;
+  margin-top: 10px;
+}
+
+.read-more-btn:hover {
+  background: #145a26;
+}
+
+/* Hero Section */
+.blogs-hero {
+  background: linear-gradient(135deg, #1f3c88 0%, #102a61 100%);
+  color: white;
+  padding: 40px 20px; /* Increased padding */
+  text-align: center;
+  border-radius: 20px;
+  margin-bottom: 40px;
+}
+
+@media (max-width: 850px) {
+  .blog-horizontal-card {
+    flex-direction: column;
+  }
+  .blog-img-wrapper {
+    width: 100%;
+    height: 220px;
+  }
+}
+
+/* Base text style */
+.blog-description {
+  font-size: 15px;
+  line-height: 1.6; /* Essential for readability */
+  color: #555;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+/* STATE 1: Collapsed (Hiding the text) */
+.blog-description.collapsed {
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Shows exactly 3 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* Use max-height as a safety fallback */
+  max-height: 4.8em; 
+}
+
+/* STATE 2: Expanded (Showing all text) */
+.blog-description.expanded {
+  display: block;
+  max-height: none; /* Allows the content to grow */
+  overflow: visible;
+}
+
+/* Ensure hyperlinks inside the HTML are visible */
+.blog-description a {
+  color: #1a7f37 !important;
+  text-decoration: underline !important;
+  font-weight: 600;
+}
