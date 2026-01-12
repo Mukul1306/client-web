@@ -5,7 +5,7 @@ export default function BlogList() {
   const [blogs, setBlogs] = useState([]);
 
   const load = async () => {
-    const res = await axios.get("http://localhost:5000/api/blogs");
+    const res = await axios.get("https://client-web-dwcu.onrender.com/api/blogs");
     setBlogs(res.data);
   };
 
@@ -13,8 +13,9 @@ export default function BlogList() {
 
   const del = async (id) => {
     if (!window.confirm("Delete blog?")) return;
-    await axios.delete(`http://localhost:5000/api/blogs/delete/${id}`);
-    load();
+// Sending the delete command to your live cloud server
+await axios.delete(`https://client-web-dwcu.onrender.com/api/blogs/delete/${id}`);
+load();
   };
 
   return (

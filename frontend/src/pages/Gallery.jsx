@@ -10,7 +10,7 @@ export default function Gallery() {
   useEffect(() => {
     const loadGallery = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/gallery");
+        const res = await axios.get("https://client-web-dwcu.onrender.com/api/gallery");
         setImages(res.data);
       } catch (err) {
         console.error("Gallery error:", err);
@@ -39,10 +39,7 @@ return (
       <div className="gallery-grid">
         {images.map(img => (
           <div className="gallery-card" key={img._id}>
-            <img
-              src={`http://localhost:5000/uploads/${img.image}`}
-              alt="gallery"
-            />
+          <img src={`https://client-web-dwcu.onrender.com/uploads/${img.image}`} alt="gallery" />
           </div>
         ))}
       </div>

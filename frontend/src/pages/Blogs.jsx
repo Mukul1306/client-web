@@ -8,7 +8,7 @@ export default function Blogs() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/blogs")
+   .get("https://client-web-dwcu.onrender.com/api/blogs")
       .then((res) => setBlogs(res.data))
       .catch((err) => console.error(err));
   }, []);
@@ -28,10 +28,7 @@ export default function Blogs() {
         {blogs.map((blog) => (
           <div className="blog-horizontal-card" key={blog._id}>
             <div className="blog-img-wrapper">
-              <img
-                src={`http://localhost:5000/uploads/${blog.image}`}
-                alt={blog.title}
-              />
+          <img src={`https://client-web-dwcu.onrender.com/uploads/${blog.image}`} alt={blog.title} />
             </div>
 
             <div className="blog-content-wrapper">

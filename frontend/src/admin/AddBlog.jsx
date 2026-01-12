@@ -34,7 +34,8 @@ export default function AddBlog({ onAdded }) {
     data.append("image", image);
 
     try {
-      await axios.post("http://localhost:5000/api/blogs/add", data);
+      // This sends your new blog data to the live Render backend
+await axios.post("https://client-web-dwcu.onrender.com/api/blogs/add", data);
       toast.success("Blog added successfully!");
       
       // Reset Form

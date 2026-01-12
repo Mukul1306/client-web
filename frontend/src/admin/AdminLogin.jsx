@@ -1,24 +1,25 @@
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+
 
 export default function AdminLogin() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
+
 
   const login = async () => {
-    try {
-      const res = await axios.post(
-        "http://localhost:5000/api/admin/login",
-        { username, password }
-      );
-
-      localStorage.setItem("adminToken", res.data.token);
-      navigate("/admin");
-    } catch (err) {
-      alert("Wrong username or password");
-    }
+   try {
+  const res = await axios.post("https://client-web-dwcu.onrender.com/api/admin/login", { username, password });
+  
+  if (res.data.token) {
+    // Save the token so you can perform admin actions (add blogs, products, etc.)
+    localStorage.setItem("adminToken", res.data.token);
+    // Redirect to dashboard
+    window.location.href = "/admin/dashboard";
+  }
+} catch (err) {
+  alert("Login failed! Check your credentials.");
+}
   };
 
   return (

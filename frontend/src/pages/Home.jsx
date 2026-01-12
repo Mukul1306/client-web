@@ -17,7 +17,7 @@ export default function Home() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/products")
+     .get("https://client-web-dwcu.onrender.com/api/products")
       .then((res) => setProducts(res.data))
       .catch((err) => console.error(err));
   }, []);
@@ -125,10 +125,8 @@ const filteredProducts = products.filter((p) => {
         className="product-click"
         onClick={() => navigate(`/product/${p._id}`)}
       >
-        <img
-          src={`http://localhost:5000/uploads/${p.image}`}
-          alt={p.name}
-        />
+       <img src={`https://client-web-dwcu.onrender.com/uploads/${p.image}`} alt={p.name} />
+       
         <div className="product-details">
           <h4>{p.name}</h4>
           {p.composition && <p><strong>Composition:</strong> {p.composition}</p>}

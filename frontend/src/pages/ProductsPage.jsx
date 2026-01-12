@@ -25,7 +25,7 @@ export default function ProductsPage() {
   ];
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/products")
+axios.get("https://client-web-dwcu.onrender.com/api/products")
       .then((res) => setProducts(res.data))
       .catch((err) => console.error("Error fetching products:", err));
   }, []);
@@ -160,11 +160,14 @@ export default function ProductsPage() {
               <div key={p._id} className="featured-card">
                 <div className="card-click-area" onClick={() => navigate(`/product/${p._id}`)}>
                   <div className="card-image-box">
-                    <img 
-                      src={`http://localhost:5000/uploads/${p.image}`} 
-                      alt={p.name} 
-                      onError={(e) => { e.target.src = "/placeholder-medicine.png"; }}
-                    />
+                <img 
+  src={`https://client-web-dwcu.onrender.com/uploads/${p.image}`} 
+  alt={p.name} 
+  onError={(e) => { 
+    e.target.onerror = null; // Prevents infinite loop
+    e.target.src = "/placeholder-medicine.png"; 
+  }}
+/>
                   </div>
                   <div className="product-details">
                     <div className="category-tags">

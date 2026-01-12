@@ -21,7 +21,8 @@ export default function Contact() {
   // };
   const submit = async () => {
     try {
-      await axios.post("http://localhost:5000/api/inquiries/add", form);
+      // Replace localhost with your actual Render URL
+await axios.post("https://client-web-dwcu.onrender.com/api/inquiries/add", form);
       alert("Thank you! We will contact you soon.");
 
       setForm({

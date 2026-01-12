@@ -13,7 +13,8 @@ export default function ProductList() {
   // LOAD PRODUCTS
   const loadProducts = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/products");
+     // This fetches your product data from the live Render cloud
+const res = await axios.get("https://client-web-dwcu.onrender.com/api/products");
       setProducts(res.data);
     } catch (err) {
       console.error(err);
@@ -30,7 +31,8 @@ export default function ProductList() {
     if (!ok) return;
 
     try {
-      await axios.delete(`http://localhost:5000/api/products/delete/${id}`);
+    // This sends the delete command to your live Render server
+await axios.delete(`https://client-web-dwcu.onrender.com/api/products/delete/${id}`);
       toast.success("Product deleted");
       loadProducts();
     } catch (err) {
@@ -90,10 +92,10 @@ export default function ProductList() {
             {/* IMAGE */}
             <div className="admin-img">
               {p.image && (
-                <img
-                  src={`http://localhost:5000/uploads/${p.image}`}
-                  alt={p.name}
-                />
+              <img
+  src={`https://client-web-dwcu.onrender.com/uploads/${p.image}`}
+  alt={p.name}
+/>
               )}
             </div>
 

@@ -46,12 +46,12 @@ export default function Layout() {
             </button>
             
             {/* DROPDOWN MENU */}
-            <div className="dropdown-content">
-              <a href="http://localhost:5000/api/catalogs/download/Pharmaceutical">Pharmaceutical</a>
-              <a href="http://localhost:5000/api/catalogs/download/Nutraceutical">Nutraceutical</a>
-              <a href="http://localhost:5000/api/catalogs/download/Cosmetic/Derma">Cosmetic & Derma</a>
-              <a href="http://localhost:5000/api/catalogs/download/Surgical Equipment">Surgical Equipment</a>
-            </div>
+          <div className="dropdown-content">
+  <a href="https://client-web-dwcu.onrender.com/api/catalogs/download/Pharmaceutical">Pharmaceutical</a>
+  <a href="https://client-web-dwcu.onrender.com/api/catalogs/download/Nutraceutical">Nutraceutical</a>
+  <a href="https://client-web-dwcu.onrender.com/api/catalogs/download/Cosmetic/Derma">Cosmetic & Derma</a>
+  <a href="https://client-web-dwcu.onrender.com/api/catalogs/download/Surgical Equipment">Surgical Equipment</a>
+</div>
           </div>
         </div>
        

@@ -10,7 +10,9 @@ export default function CatalogAdmin() {
   // 1. Function to fetch the list of catalogs from backend
   const fetchCatalogs = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/catalogs/list");
+    // Fetches the catalog list from your live Render server
+const res = await axios.get("https://client-web-dwcu.onrender.com/api/catalogs/list");
+
       setCatalogs(res.data);
     } catch (err) {
       console.error("Error fetching catalogs:", err);
@@ -32,9 +34,9 @@ export default function CatalogAdmin() {
     formData.append("type", category);
 
     try {
-      await axios.post("http://localhost:5000/api/catalogs/upload", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      await axios.post("https://client-web-dwcu.onrender.com/api/catalogs/upload", formData, {
+  headers: { "Content-Type": "multipart/form-data" },
+});
       alert("Catalog updated successfully!");
       fetchCatalogs(); // Refresh the list after upload
     } catch (err) {
@@ -48,7 +50,8 @@ export default function CatalogAdmin() {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this catalog? This will remove the file from the server.")) {
       try {
-        await axios.delete(`http://localhost:5000/api/catalogs/${id}`);
+      // This sends the delete request to your live Render server
+await axios.delete(`https://client-web-dwcu.onrender.com/api/catalogs/${id}`);
         alert("Catalog deleted successfully!");
         fetchCatalogs(); // Refresh the list after deletion
       } catch (err) {
@@ -98,11 +101,11 @@ export default function CatalogAdmin() {
                     <td style={{ padding: "10px" }}><strong>{cat.type}</strong></td>
                     <td><span className="status-badge">Live</span></td>
                     <td style={{ display: "flex", gap: "10px", padding: "10px" }}>
-                      <a
-                        href={`http://localhost:5000/api/catalogs/download/${cat.type}`}
-                        className="view-btn"
-                        style={{ color: "blue", textDecoration: "none" }}
-                      >
+                    <a
+  href={`https://client-web-dwcu.onrender.com/api/catalogs/download/${cat.type}`}
+  className="view-btn"
+  style={{ color: "blue", textDecoration: "none" }}
+>
                         View
                       </a>
                       <button

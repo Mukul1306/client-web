@@ -9,7 +9,7 @@ export default function InquiryAdmin() {
 
   const loadInquiries = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/inquiries");
+    const res = await axios.get("https://client-web-dwcu.onrender.com/api/inquiries");
       setData(res.data);
     } catch (err) {
       toast.error("Failed to load inquiries");
@@ -23,7 +23,9 @@ export default function InquiryAdmin() {
   const deleteInquiry = async (id) => {
     if (!window.confirm("Are you sure you want to delete this inquiry?")) return;
     try {
-      await axios.delete(`http://localhost:5000/api/inquiries/delete/${id}`);
+    // This tells the browser to send the delete command to your live cloud server
+await axios.delete(`https://client-web-dwcu.onrender.com/api/inquiries/delete/${id}`);
+
       toast.success("Inquiry deleted");
       loadInquiries();
     } catch (err) {
@@ -35,7 +37,7 @@ export default function InquiryAdmin() {
     <div className="admin-page">
       <div className="admin-header-flex">
         <h2 className="admin-title">Customer Inquiries</h2>
-        <a href="http://localhost:5000/api/inquiries/export">
+        <a href="https://client-web-dwcu.onrender.com/api/inquiries/export">
           <button className="export-btn">📥 Download Excel</button>
         </a>
       </div>

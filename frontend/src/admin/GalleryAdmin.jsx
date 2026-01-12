@@ -9,12 +9,13 @@ export default function GalleryAdmin() {
   const [preview, setPreview] = useState(null);
 
   const loadImages = async () => {
-    try {
-      const res = await axios.get("http://localhost:5000/api/gallery");
-      setImages(res.data);
-    } catch (err) {
-      toast.error("Failed to load gallery");
-    }
+   try {
+  // Now fetching from your live Render server
+  const res = await axios.get("https://client-web-dwcu.onrender.com/api/gallery");
+  setImages(res.data);
+} catch (err) {
+  toast.error("Failed to load gallery");
+}
   };
 
   useEffect(() => {
@@ -38,8 +39,8 @@ export default function GalleryAdmin() {
     try {
       const data = new FormData();
       data.append("image", file);
-
-      await axios.post("http://localhost:5000/api/gallery/add", data);
+// Points to your live Render backend
+await axios.post("https://client-web-dwcu.onrender.com/api/gallery/add", data);
       toast.success("Image uploaded successfully");
 
       setFile(null);
@@ -54,7 +55,8 @@ export default function GalleryAdmin() {
     if (!window.confirm("Are you sure you want to delete this image?")) return;
 
     try {
-      await axios.delete(`http://localhost:5000/api/gallery/delete/${id}`);
+      // This tells the browser to send the delete command to your live cloud server
+await axios.delete(`https://client-web-dwcu.onrender.com/api/gallery/delete/${id}`);
       toast.success("Image removed");
       loadImages();
     } catch (err) {
@@ -96,10 +98,10 @@ export default function GalleryAdmin() {
         {images.map((img) => (
           <div className="gallery-card" key={img._id}>
             <div className="gallery-img-box">
-              <img
-                src={`http://localhost:5000/uploads/${img.image}`}
-                alt="gallery"
-              />
+        <img
+  src={`https://client-web-dwcu.onrender.com/uploads/${img.image}`}
+  alt="gallery"
+/>
             </div>
             <div className="gallery-card-footer">
               <button className="delete-btn" onClick={() => deleteImage(img._id)}>

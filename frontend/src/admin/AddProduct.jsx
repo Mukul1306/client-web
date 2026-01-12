@@ -63,7 +63,8 @@ export default function AddProduct() {
       });
       if (image) data.append("image", image);
 
-      await axios.post("http://localhost:5000/api/products/add", data);
+    // Points to your live Render backend
+await axios.post("https://client-web-dwcu.onrender.com/api/products/add", data);
       alert("Product Added Successfully!");
       
       // FIX: Clean reset instead of window reload

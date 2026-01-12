@@ -9,7 +9,8 @@ export default function BlogDetails() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/blogs/${id}`)
+// Replace with your actual Render URL
+.get(`https://client-web-dwcu.onrender.com/api/blogs/${id}`)
       .then((res) => setBlog(res.data))
       .catch((err) => console.error(err));
   }, [id]);
@@ -21,11 +22,11 @@ export default function BlogDetails() {
   return (
     <div className="blog-wrapper">
       <div className="blog-detail">
-        <img
-          src={`http://localhost:5000/uploads/${blog.image}`}
-          alt={blog.title}
-          className="blog-detail-img"
-        />
+    <img 
+  src={`https://client-web-dwcu.onrender.com/uploads/${blog.image}`} 
+  alt={blog.title} 
+  className="blog-detail-img" 
+/>
 
         <div className="blog-detail-content">
           <span className="blog-date">

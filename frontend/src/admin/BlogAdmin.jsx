@@ -13,9 +13,10 @@ export default function BlogAdmin() {
   const [image, setImage] = useState(null);
 
   const loadBlogs = async () => {
-    const res = await axios.get("http://localhost:5000/api/blogs");
-    setBlogs(res.data);
-  };
+  // Now fetching from your live cloud server
+  const res = await axios.get("https://client-web-dwcu.onrender.com/api/blogs");
+  setBlogs(res.data);
+};
 
   useEffect(() => {
     loadBlogs();
@@ -32,8 +33,8 @@ export default function BlogAdmin() {
     data.append("excerpt", form.excerpt);
     data.append("content", form.content);
     data.append("image", image);
-
-    await axios.post("http://localhost:5000/api/blogs/add", data);
+// This tells your browser to send the new blog data to your live cloud server
+await axios.post("https://client-web-dwcu.onrender.com/api/blogs/add", data);
     toast.success("Blog added");
 
     setForm({ title: "", excerpt: "", content: "" });
@@ -43,7 +44,7 @@ export default function BlogAdmin() {
 
   const deleteBlog = async (id) => {
     if (!window.confirm("Delete this blog?")) return;
-    await axios.delete(`http://localhost:5000/api/blogs/delete/${id}`);
+await axios.delete(`http://localhost:5000/api/blogs/delete/${id}`);
     toast.success("Blog deleted");
     loadBlogs();
   };
@@ -84,7 +85,7 @@ export default function BlogAdmin() {
         {blogs.map((b) => (
           <div className="admin-card" key={b._id}>
             <img
-              src={`http://localhost:5000/uploads/${b.image}`}
+             src={`https://client-web-dwcu.onrender.com/uploads/${b.image}`}
               alt={b.title}
             />
 

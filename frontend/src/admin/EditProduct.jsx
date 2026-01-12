@@ -27,9 +27,9 @@ export default function EditProduct({ product, onClose, onUpdated }) {
 
       if (image) data.append("image", image);
 
-      await axios.put(
-        `http://localhost:5000/api/products/update/${product._id}`,
-        data
+ await axios.put(
+  `https://client-web-dwcu.onrender.com/api/products/update/${product._id}`, 
+  data
       );
 
       alert("Product Updated Successfully");

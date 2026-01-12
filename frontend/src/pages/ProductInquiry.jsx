@@ -21,7 +21,9 @@ export default function ProductInquiry() {
 
   const submit = async () => {
     try {
-      await axios.post("http://localhost:5000/api/inquiries/add", form);
+      // This tells your frontend to send the inquiry data to your live Render server
+await axios.post("https://client-web-dwcu.onrender.com/api/inquiries/add", form);
+
       alert("Inquiry submitted successfully");
     } catch (err) {
       alert("Failed to submit inquiry");

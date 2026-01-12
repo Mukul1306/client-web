@@ -16,7 +16,7 @@ export default function ProductDetails() {
   ];
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/api/products/${id}`)
+    axios.get(`https://client-web-dwcu.onrender.com/api/products/${id}`)
       .then((res) => setProduct(res.data))
       .catch((err) => console.error("Error fetching product:", err));
   }, [id]);
@@ -58,11 +58,14 @@ export default function ProductDetails() {
     <div className="product-details-container">
       <div className="product-main-info">
         <div className="image-section">
-          <img 
-            src={`http://localhost:5000/uploads/${product.image}`} 
-            alt={product.name} 
-            onError={(e) => { e.target.src = "/placeholder-medicine.png"; }} 
-          />
+       <img 
+  src={`https://client-web-dwcu.onrender.com/uploads/${product.image}`} 
+  alt={product.name} 
+  onError={(e) => { 
+    e.target.onerror = null; // Prevents infinite loop if placeholder is also missing
+    e.target.src = "/placeholder-medicine.png"; 
+  }} 
+/>
         </div>
 
         <div className="info-section">

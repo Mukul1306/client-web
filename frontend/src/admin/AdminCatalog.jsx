@@ -12,7 +12,13 @@ export default function AdminCatalog() {
     formData.append("type", category);
 
     try {
-      await axios.post("http://localhost:5000/api/catalogs/upload", formData);
+  // This sends your PDF/Catalog files to the live Render server
+// This sends your PDF/Catalog files to the live Render server
+await axios.post("https://client-web-dwcu.onrender.com/api/catalogs/upload", formData, {
+  headers: {
+    "Content-Type": "multipart/form-data",
+  },
+});
       alert("Catalog Uploaded Successfully!");
     } catch (err) {
       console.error(err);
