@@ -13,7 +13,7 @@ const app = express();
 // CORS
 app.use(cors({
 
-  origin: "https://splendorous-froyo-ada344.netlify.app",
+  origin: "https://ubiquitous-squirrel-8a5c86.netlify.app",
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));

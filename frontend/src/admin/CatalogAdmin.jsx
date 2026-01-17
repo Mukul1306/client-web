@@ -102,8 +102,10 @@ await axios.delete(`https://client-web-dwcu.onrender.com/api/catalogs/${id}`);
                     <td style={{ padding: "10px" }}><strong>{cat.type}</strong></td>
                     <td><span className="status-badge">Live</span></td>
                     <td style={{ display: "flex", gap: "10px", padding: "10px" }}>
-                    <a
+                   <a
  href={`https://client-web-dwcu.onrender.com/api/catalogs/download/${encodeURIComponent(cat.type)}`}
+
+
   className="view-btn"
   style={{ color: "blue", textDecoration: "none" }}
 >
