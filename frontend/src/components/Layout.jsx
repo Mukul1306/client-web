@@ -49,7 +49,9 @@ export default function Layout() {
           <div className="dropdown-content">
   <a href="https://client-web-dwcu.onrender.com/api/catalogs/download/Pharmaceutical">Pharmaceutical</a>
   <a href="https://client-web-dwcu.onrender.com/api/catalogs/download/Nutraceutical">Nutraceutical</a>
-  <a href="https://client-web-dwcu.onrender.com/api/catalogs/download/Cosmetic/Derma">Cosmetic & Derma</a>
+  <a href="https://client-web-dwcu.onrender.com/api/catalogs/download/Cosmetic%2FDerma">
+    Cosmetic & Derma
+  </a>
   <a href="https://client-web-dwcu.onrender.com/api/catalogs/download/Surgical Equipment">Surgical Equipment</a>
 </div>
           </div>
@@ -70,7 +72,7 @@ export default function Layout() {
           <nav className={`nav-links ${menuOpen ? "open" : ""}`}>
             <Link to="/" onClick={closeMenu}>Home</Link>
             <Link to="/all-products">Products</Link> 
-            <Link to="/blogs" onClick={closeMenu}>Blogs</Link>
+            <Link to="/blogs" onClick={closeMenu}>Articles</Link>
             <Link to="/gallery" onClick={closeMenu}>Gallery</Link>
             <Link to="/about" onClick={closeMenu}>About</Link>
             <Link to="/global-presence" className="global-btn">

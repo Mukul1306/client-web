@@ -5,30 +5,29 @@ const fs = require('fs');
 const path = require('path');
 const Catalog = require('../models/Catalog');
 
-// AUTOMATIC FOLDER CREATION LOGIC
+// AUTOMATIC FOLDER CREATION
 const uploadDir = path.join(__dirname, '../uploads/catalogs');
 if (!fs.existsSync(uploadDir)) {
-    fs.mkdirSync(uploadDir, { recursive: true });
+  fs.mkdirSync(uploadDir, { recursive: true });
 }
 
+// Multer Storage
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, uploadDir);
-  },
+  destination: (req, file, cb) => cb(null, uploadDir),
   filename: (req, file, cb) => {
-    // Replaces slashes with dashes to prevent folder path errors
-    const type = req.body.type ? req.body.type.replace(/\//g, '-') : 'unknown';
-    cb(null, `${type}-${Date.now()}.pdf`);
+    const rawType = req.body.type || "unknown";
+    const safeType = rawType.replace(/\//g, "_"); // cosmetic_derma
+    cb(null, `${safeType}-${Date.now()}.pdf`);
   }
 });
 
-const upload = multer({ 
-    storage: storage,
-    limits: { fileSize: 20 * 1024 * 1024 } // Allow up to 20MB
+const upload = multer({
+  storage,
+  limits: { fileSize: 20 * 1024 * 1024 }
 });
 
-// --- GET ROUTE (LIST ALL) ---
-// Used by Admin Panel to show the list of existing catalogs
+
+// ================= LIST =================
 router.get('/list', async (req, res) => {
   try {
     const catalogs = await Catalog.find().sort({ updatedAt: -1 });
@@ -38,80 +37,69 @@ router.get('/list', async (req, res) => {
   }
 });
 
-// --- POST ROUTE (UPLOAD) ---
+
+// ================= UPLOAD =================
 router.post('/upload', upload.single('catalogPdf'), async (req, res) => {
   try {
     if (!req.file) return res.status(400).json({ message: "No file received" });
 
-    const { type } = req.body;
+    const rawType = req.body.type;
+    const safeType = rawType.replace(/\//g, "_");
     const pdfUrl = req.file.filename;
 
-    // Optional: If you want to delete the OLD physical file before updating with a NEW one:
-    const oldCatalog = await Catalog.findOne({ type });
+    const oldCatalog = await Catalog.findOne({ type: safeType });
     if (oldCatalog) {
-        const oldPath = path.join(uploadDir, oldCatalog.pdfUrl);
-        if (fs.existsSync(oldPath)) fs.unlinkSync(oldPath);
+      const oldPath = path.join(uploadDir, oldCatalog.pdfUrl);
+      if (fs.existsSync(oldPath)) fs.unlinkSync(oldPath);
     }
 
     await Catalog.findOneAndUpdate(
-      { type },
+      { type: safeType },
       { pdfUrl, updatedAt: Date.now() },
       { upsert: true }
     );
 
     res.status(200).json({ message: "Upload success!" });
   } catch (err) {
-    console.error("Internal Server Error:", err);
+    console.error(err);
     res.status(500).json({ error: err.message });
   }
 });
 
-// --- GET ROUTE (DOWNLOAD) ---
+
+// ================= DOWNLOAD =================
 router.get('/download/:type', async (req, res) => {
   try {
-    const { type } = req.params;
-    const catalog = await Catalog.findOne({ type });
+    const rawType = decodeURIComponent(req.params.type); // Cosmetic/Derma
+    const safeType = rawType.replace(/\//g, "_");
 
-    if (!catalog || !catalog.pdfUrl) {
-      return res.status(404).send("Error: Catalog not found.");
-    }
+    const catalog = await Catalog.findOne({ type: safeType });
+    if (!catalog) return res.status(404).send("Catalog not found");
 
     const filePath = path.join(uploadDir, catalog.pdfUrl);
-
-    if (fs.existsSync(filePath)) {
-      return res.download(filePath, `${type}-Catalog.pdf`);
-    } else {
-      return res.status(404).send("Error: PDF file missing from storage.");
+    if (!fs.existsSync(filePath)) {
+      return res.status(404).send("PDF missing from storage");
     }
+
+    res.download(filePath, `${rawType}-Catalog.pdf`);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
 
-// --- DELETE ROUTE ---
-// Deletes both the database entry and the physical file
+
+// ================= DELETE =================
 router.delete('/:id', async (req, res) => {
   try {
     const catalog = await Catalog.findById(req.params.id);
-    
-    if (!catalog) {
-      return res.status(404).json({ message: "Catalog not found" });
-    }
+    if (!catalog) return res.status(404).json({ message: "Catalog not found" });
 
-    // Define file path
     const filePath = path.join(uploadDir, catalog.pdfUrl);
+    if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
 
-    // 1. Delete physical file
-    if (fs.existsSync(filePath)) {
-        fs.unlinkSync(filePath);
-    }
-
-    // 2. Delete from database
     await Catalog.findByIdAndDelete(req.params.id);
-
     res.status(200).json({ message: "Catalog deleted successfully" });
   } catch (err) {
-    console.error("Delete Error:", err);
     res.status(500).json({ error: err.message });
   }
 });

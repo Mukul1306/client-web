@@ -31,7 +31,8 @@ const res = await axios.get("https://client-web-dwcu.onrender.com/api/catalogs/l
     setLoading(true);
     const formData = new FormData();
     formData.append("catalogPdf", file);
-    formData.append("type", category);
+   formData.append("type", category.replace("/", "_"));
+
 
     try {
       await axios.post("https://client-web-dwcu.onrender.com/api/catalogs/upload", formData, {
@@ -102,7 +103,7 @@ await axios.delete(`https://client-web-dwcu.onrender.com/api/catalogs/${id}`);
                     <td><span className="status-badge">Live</span></td>
                     <td style={{ display: "flex", gap: "10px", padding: "10px" }}>
                     <a
-  href={`https://client-web-dwcu.onrender.com/api/catalogs/download/${cat.type}`}
+ href={`https://client-web-dwcu.onrender.com/api/catalogs/download/${encodeURIComponent(cat.type)}`}
   className="view-btn"
   style={{ color: "blue", textDecoration: "none" }}
 >
