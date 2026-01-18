@@ -1,14 +1,14 @@
 const express = require("express");
 const router = express.Router();
 const Product = require("../models/Product");
-const upload = require("../middleware/upload");
+const upload = require("../middleware/upload"); // This should now be the Cloudinary middleware
 const fs = require("fs");
 const path = require("path");
 
 // GET ALL PRODUCTS
 router.get("/", async (req, res) => {
   try {
-    const products = await Product.find().sort({ createdAt: -1 }); // Newest first
+    const products = await Product.find().sort({ createdAt: -1 });
     res.json(products);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -36,14 +36,14 @@ router.post("/add", upload.single("image"), async (req, res) => {
       try {
         productData.categories = JSON.parse(req.body.categories);
       } catch (e) {
-        // Fallback: If it's a simple string like "Pharma", convert to ["Pharma"]
         productData.categories = req.body.categories.split(",").map(cat => cat.trim());
       }
     }
 
     const product = new Product({
       ...productData,
-      image: req.file ? req.file.filename : ""
+      // FIXED: Save the full Cloudinary URL instead of just the filename
+      image: req.file ? req.file.path : "" 
     });
 
     await product.save();
@@ -54,12 +54,11 @@ router.post("/add", upload.single("image"), async (req, res) => {
   }
 });
 
-// Backend Update Route (PUT /api/products/update/:id)
+// UPDATE PRODUCT
 router.put("/update/:id", upload.single("image"), async (req, res) => {
   try {
     const updateData = { ...req.body };
 
-    // Safely parse Therapeutic Tags
     if (req.body.categories) {
       try {
         updateData.categories = typeof req.body.categories === "string" 
@@ -71,7 +70,8 @@ router.put("/update/:id", upload.single("image"), async (req, res) => {
     }
 
     if (req.file) {
-      updateData.image = req.file.filename;
+      // FIXED: Save the full Cloudinary URL for the update
+      updateData.image = req.file.path;
     }
 
     const updatedProduct = await Product.findByIdAndUpdate(
@@ -92,13 +92,9 @@ router.delete("/delete/:id", async (req, res) => {
     const product = await Product.findById(req.params.id);
     if (!product) return res.status(404).json({ message: "Product not found" });
 
-    if (product.image) {
-      const imagePath = path.join(__dirname, "..", "uploads", product.image);
-      if (fs.existsSync(imagePath)) {
-        fs.unlinkSync(imagePath);
-      }
-    }
-
+    // NOTE: Cloudinary files are not stored on your local disk.
+    // You can remove the fs.unlinkSync logic as it will throw errors for Cloudinary URLs.
+    
     await Product.findByIdAndDelete(req.params.id);
     res.json({ message: "Product deleted successfully" });
   } catch (error) {

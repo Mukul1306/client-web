@@ -10,10 +10,10 @@ export default function ProductsPage() {
   const navigate = useNavigate();
 
   const mainDivisions = [
-    { name: "Pharmaceutical", icon: "💊" },
-    { name: "Nutraceutical", icon: "🩺" },
-    { name: "Cosmetic / Derma", icon: "🧴" },
-    { name: "Surgical Equipment", icon: "🩺" }
+    { name: "Pharmaceutical" },
+    { name: "Nutraceutical" },
+    { name: "Cosmetic / Derma" },
+    { name: "Surgical Equipment" }
   ];
 
   const therapeuticClasses = [
@@ -161,7 +161,7 @@ axios.get("https://client-web-dwcu.onrender.com/api/products")
                 <div className="card-click-area" onClick={() => navigate(`/product/${p._id}`)}>
                   <div className="card-image-box">
                 <img 
-  src={`https://client-web-dwcu.onrender.com/uploads/${p.image}`} 
+  src={p.image} 
   alt={p.name} 
   onError={(e) => { 
     e.target.onerror = null; // Prevents infinite loop

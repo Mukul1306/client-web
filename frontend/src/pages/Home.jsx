@@ -125,7 +125,7 @@ const filteredProducts = products.filter((p) => {
         className="product-click"
         onClick={() => navigate(`/product/${p._id}`)}
       >
-       <img src={`https://client-web-dwcu.onrender.com/uploads/${p.image}`} alt={p.name} />
+       <img src={p.image} alt={p.name} />
        
         <div className="product-details">
           <h4>{p.name}</h4>
@@ -196,10 +196,10 @@ const filteredProducts = products.filter((p) => {
       {/* Visual Side */}
       <div className="journey-visual" data-aos="zoom-in" data-aos-delay="200">
         <div className="globe-wrapper">
-          <img src="/ChatGPT Image Jan 12, 2026, 12_18_45 PM.png" alt="Global Presence" className="floating-globe" />
+          <img src="/pharmacetucial.png" alt="Global Presence" className="floating-globe" />
           <div className="experience-badge">
             <span className="years"></span>
-            <span className="text"> Nutraceutical</span>
+            <span className="text"> Pharmaceutical</span>
           </div>
         </div>
       </div>
@@ -376,7 +376,7 @@ const filteredProducts = products.filter((p) => {
           <img src="/Surgical Equipment.png" alt="Global Presence" className="floating-globe" />
           <div className="experience-badge left-badge">
             <span className="years"></span>
-            <span className="text"> Surgical Equipment</span>
+            <span className="text"> Cosmetic / Derma</span>
           </div>
         </div>
       </div>

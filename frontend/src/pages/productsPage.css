@@ -25,7 +25,7 @@
 
 .modern-search-input {
   width: 100%;
-  padding: 16px 25px;
+  
   border-radius: 50px;
   border: none;
   font-size: 1rem;
@@ -219,4 +219,138 @@
     margin: 20px;
     padding: 40px 15px;
   }
+}
+/* --- HERO SECTION --- */
+.products-hero-section {
+  background: linear-gradient(135deg, #1f3c88 0%, #102a61 100%);
+  padding: 80px 8% 60px;
+  text-align: center;
+  color: white;
+  border-radius: 0 0 24px 24px;
+}
+
+/* --- SEARCH INPUT (The White Bar) --- */
+.modern-search-input {
+  width: 100%;
+  padding: 16px 25px;
+  border-radius: 50px;
+  font-size: 1rem;
+  
+  /* Change from solid white to transparent glass */
+  background: rgba(255, 255, 255, 0.12) !important; 
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  
+  /* Border and text color */
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  color: #000 !important;
+  
+  /* Remove heavy shadow */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+
+
+
+/* --- CATEGORY PILLS (The "All" White Button) --- */
+.category-pill {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 10px 22px;
+  border-radius: 50px;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.category-pill .cat-name {
+  color: white;
+  font-size: 0.9rem;
+}
+
+/* Fixing the "Active" (Solid White) state */
+.category-pill.active {
+  /* Change background to a subtle blue or light glass instead of solid white */
+  background: rgba(255, 255, 255, 0.25) !important;
+  border-color: #ffffff !important;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+.category-pill.active .cat-name {
+  color: #ffffff !important; /* White text on active instead of blue */
+  font-weight: 700;
+}
+
+/* --- THERAPEUTIC MINI PILLS --- */
+.mini-pill {
+  padding: 6px 14px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  color: #e2e8f0;
+  font-size: 0.85rem;
+  transition: 0.2s;
+}
+
+.mini-pill.active {
+  background: #2563eb !important; /* Brighter blue to show selection */
+  border-color: #3b82f6;
+  color: white !important;
+}
+
+/* --- MOBILE TWEAKS --- */
+@media (max-width: 768px) {
+  .category-grid {
+    gap: 8px;
+    padding: 0 10px;
+  }
+  
+  .modern-search-input {
+    padding: 12px 20px;
+    font-size: 0.9rem;
+  }
+}
+/* --- SEARCH BAR TRANSPARENCY --- */
+.modern-search-input {
+  width: 100%;
+  padding: 16px 25px;
+  border-radius: 50px;
+  font-size: 1rem;
+  
+  /* Force Transparency */
+  background: rgba(255, 255, 255, 0.1) !important; 
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  
+  /* White Border and Text */
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  color: #000 !important;
+  
+  /* Remove the heavy white shadow seen in your screenshot */
+  box-shadow: none !important;
+  outline: none;
+}
+
+/* Fix the placeholder color so it's readable on blue */
+.modern-search-input::placeholder {
+ color: #000;
+}
+
+/* --- ACTIVE PILL TRANSPARENCY (The 'All' button) --- */
+.category-pill.active {
+  /* Replace solid white with a brighter glass effect */
+  background: rgba(255, 255, 255, 0.25) !important;
+  border: 1px solid rgba(255, 255, 255, 0.6) !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+}
+
+.category-pill.active .cat-name {
+  color: white !important; /* Keep text white on the transparent background */
+  font-weight: 700;
+}
+
+/* --- HOVER EFFECT FOR BUTTONS --- */
+.category-pill:hover, .mini-pill:hover {
+  background: rgba(255, 255, 255, 0.2) !important;
 }

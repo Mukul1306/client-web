@@ -4,15 +4,39 @@ const cors = require("cors");
 const blogRoutes = require("./routes/blogRoutes");
 const catalogRoutes = require('./routes/catalog');
 require('dotenv').config();
+
+// --- 1. NEW IMPORTS FOR CLOUDINARY ---
+const cloudinary = require('cloudinary').v2;
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
+const multer = require('multer');
+
 const app = express();
 
 /* =======================
-   MIDDLEWARE (FIRST)
+   CLOUDINARY CONFIGURATION
 ======================= */
+// --- 2. SETUP CLOUDINARY WITH YOUR DASHBOARD KEYS ---
+cloudinary.config({
+  cloud_name: 'dths8gmd3', // From your screenshot
+  api_key: '883841434275163', // From your screenshot
+  api_secret: process.env.CLOUDINARY_API_SECRET // Keep this in your .env file!
+});
 
-// CORS
+// --- 3. CREATE STORAGE ENGINE ---
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: 'alyvra_pharmacy',
+    allowed_formats: ['jpg', 'png', 'jpeg', 'webp'],
+  },
+});
+
+const upload = multer({ storage: storage });
+
+/* =======================
+    MIDDLEWARE
+======================= */
 app.use(cors({
-
   origin: "https://ubiquitous-squirrel-8a5c86.netlify.app",
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
@@ -22,39 +46,32 @@ app.get("/", (req, res) => {
   res.status(200).send("Alyvra Pharmatech Backend API is Live and Running!");
 });
 
-// JSON body parser
 app.use(express.json());
 
-// Static uploads folder
+// Keep this for now to avoid breaking old links, but new ones won't use it
 app.use("/uploads", express.static("uploads"));
 
 /* =======================
-   ROUTES
+    ROUTES
 ======================= */
-
+// Note: You will need to pass the 'upload' middleware to your route files
 app.use("/api/products", require("./routes/productRoutes"));
 app.use("/api/gallery", require("./routes/galleryRoutes"));
 app.use("/api/blogs", blogRoutes);
 app.use("/api/inquiries", require("./routes/inquiryRoutes"));
 app.use("/api/admin", require("./routes/adminAuth"));
-
-const inquiryRoutes = require("./routes/inquiryRoutes");
 app.use('/api/catalogs', catalogRoutes);
-/* =======================
-   DATABASE
-======================= */
 
+/* =======================
+    DATABASE
+======================= */
 mongoose
   .connect(process.env.MONGO_URI) 
   .then(() => console.log("✅ MongoDB Connected Successfully"))
   .catch((err) => {
-    console.error("❌ MongoDB Connection Error:");
-    console.error(err.message);
+    console.error("❌ MongoDB Connection Error:", err.message);
   });
 
-/* =======================
-   SERVER
-======================= */
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server running on port ${PORT}`);

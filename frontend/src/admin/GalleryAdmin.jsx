@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react"; // Added React import here
 import axios from "axios";
 import toast from "react-hot-toast";
 import "./admin.css";
@@ -9,13 +9,12 @@ export default function GalleryAdmin() {
   const [preview, setPreview] = useState(null);
 
   const loadImages = async () => {
-   try {
-  // Now fetching from your live Render server
-  const res = await axios.get("https://client-web-dwcu.onrender.com/api/gallery");
-  setImages(res.data);
-} catch (err) {
-  toast.error("Failed to load gallery");
-}
+    try {
+      const res = await axios.get("https://client-web-dwcu.onrender.com/api/gallery");
+      setImages(res.data);
+    } catch (err) {
+      toast.error("Failed to load gallery");
+    }
   };
 
   useEffect(() => {
@@ -39,8 +38,7 @@ export default function GalleryAdmin() {
     try {
       const data = new FormData();
       data.append("image", file);
-// Points to your live Render backend
-await axios.post("https://client-web-dwcu.onrender.com/api/gallery/add", data);
+      await axios.post("https://client-web-dwcu.onrender.com/api/gallery/add", data);
       toast.success("Image uploaded successfully");
 
       setFile(null);
@@ -55,8 +53,7 @@ await axios.post("https://client-web-dwcu.onrender.com/api/gallery/add", data);
     if (!window.confirm("Are you sure you want to delete this image?")) return;
 
     try {
-      // This tells the browser to send the delete command to your live cloud server
-await axios.delete(`https://client-web-dwcu.onrender.com/api/gallery/delete/${id}`);
+      await axios.delete(`https://client-web-dwcu.onrender.com/api/gallery/delete/${id}`);
       toast.success("Image removed");
       loadImages();
     } catch (err) {
@@ -68,7 +65,6 @@ await axios.delete(`https://client-web-dwcu.onrender.com/api/gallery/delete/${id
     <div className="admin-page">
       <h2 className="admin-title">Gallery Management</h2>
 
-      {/* AESTHETIC UPLOAD SECTION */}
       <div className="gallery-upload-section">
         <div className="upload-container">
           {preview ? (
@@ -93,22 +89,27 @@ await axios.delete(`https://client-web-dwcu.onrender.com/api/gallery/delete/${id
         )}
       </div>
 
-      {/* MODERN IMAGE GRID */}
       <div className="gallery-grid">
         {images.map((img) => (
-          <div className="gallery-card" key={img._id}>
-            <div className="gallery-img-box">
-        <img
-  src={`https://client-web-dwcu.onrender.com/uploads/${img.image}`}
-  alt="gallery"
-/>
+          /* FIXED: React.Fragment now works because React is imported */
+          <React.Fragment key={img._id}> 
+            <div className="gallery-item-card">
+              <img 
+                src={img.image} 
+                alt="gallery" 
+                className="gallery-preview-img"
+              />
+              <div className="gallery-actions">
+                <button 
+                  className="delete-btn" 
+                  /* FIXED: Changed handleDelete to deleteImage to match your function name */
+                  onClick={() => deleteImage(img._id)}
+                >
+                  🗑️ DELETE
+                </button>
+              </div>
             </div>
-            <div className="gallery-card-footer">
-              <button className="delete-btn" onClick={() => deleteImage(img._id)}>
-                🗑️ Delete
-              </button>
-            </div>
-          </div>
+          </React.Fragment>
         ))}
       </div>
     </div>

@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Gallery = require("../models/Gallery");
-const upload = require("../middleware/upload");
+const upload = require("../middleware/upload"); // This is now your Cloudinary middleware
 const fs = require("fs");
 const path = require("path");
 
@@ -18,7 +18,7 @@ router.get("/", async (req, res) => {
 });
 
 /* =========================
-   ADD IMAGE (UPLOAD)
+   ADD IMAGE (UPLOAD TO CLOUDINARY)
 ========================= */
 router.post("/add", upload.single("image"), async (req, res) => {
   try {
@@ -27,13 +27,14 @@ router.post("/add", upload.single("image"), async (req, res) => {
     }
 
     const newImage = new Gallery({
-      image: req.file.filename
+      // FIXED: Save the full permanent URL (req.file.path) instead of just the filename
+      image: req.file.path 
     });
 
     await newImage.save();
 
     res.json({
-      message: "Image uploaded successfully",
+      message: "Image uploaded successfully to Cloudinary",
       image: newImage
     });
   } catch (err) {
@@ -53,17 +54,12 @@ router.delete("/delete/:id", async (req, res) => {
       return res.status(404).json({ message: "Image not found" });
     }
 
-    // delete image file
-    if (img.image) {
-      const filePath = path.join(__dirname, "..", "uploads", img.image);
-      if (fs.existsSync(filePath)) {
-        fs.unlinkSync(filePath);
-      }
-    }
-
+    // NOTE: We no longer use fs.unlinkSync because the file is not on your server's disk.
+    // The image is now a URL (https://res.cloudinary.com/...)
+    
     await Gallery.findByIdAndDelete(req.params.id);
 
-    res.json({ message: "Image deleted successfully" });
+    res.json({ message: "Image record deleted successfully" });
   } catch (err) {
     console.error("DELETE ERROR:", err);
     res.status(500).json({ error: err.message });
