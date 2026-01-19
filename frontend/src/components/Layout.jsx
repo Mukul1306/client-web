@@ -25,12 +25,17 @@ const handleDownload = (type) => {
   const item = catalogs.find(c => c.type === type);
   
   if (item && item.pdfUrl) {
-    // This Cloudinary transformation 'fl_attachment' forces a download
+    // 1. Force the download flag into the Cloudinary URL
     const downloadUrl = item.pdfUrl.replace('/upload/', '/upload/fl_attachment/');
     
+    // 2. Create a clean download link
     const link = document.createElement('a');
     link.href = downloadUrl;
-    link.setAttribute('download', `${type}-Catalog.pdf`);
+    
+    // 3. Set the filename (vital for mobile users to find the file later)
+    link.setAttribute('download', `${type}_Catalog.pdf`);
+    
+    // 4. Standard 'click' logic for mobile browsers
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -38,6 +43,7 @@ const handleDownload = (type) => {
     alert("Catalog not found.");
   }
 };
+
 
   // Close menu on resize
   useEffect(() => {
