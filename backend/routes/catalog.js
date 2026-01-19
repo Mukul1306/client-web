@@ -15,14 +15,14 @@ const storage = new CloudinaryStorage({
     public_id: (req, file) => {
       const rawType = req.body.type || "unknown";
       const safeType = rawType.replace(/\//g, "_");
-      return `${safeType}-${Date.now()}`;
+    return `${safeType}-${Date.now()}.pdf`;
     },
   },
 });
 
 
 const upload = multer({ 
-  storage,
+  storage : storage,
   limits: { fileSize: 20 * 1024 * 1024 } // 20MB limit
 });
 
