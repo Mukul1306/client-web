@@ -66,7 +66,7 @@ router.post('/upload', upload.single('catalogPdf'), async (req, res) => {
 
 // ================= FIXED DOWNLOAD =================
 // The (:type*) syntax allows slashes in the URL (captures Cosmetic/Derma)
-router.get('/download/:type*', async (req, res) => {
+router.get('/download/:type', async (req, res) => {
   try {
     // Captured string like "Cosmetic/Derma"
     const type = req.params.type || req.params[0]; 
