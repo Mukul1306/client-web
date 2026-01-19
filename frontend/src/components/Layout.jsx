@@ -82,7 +82,7 @@ const handleDownload = (type) => {
                 {/* These buttons now have the handleDownload function to call */}
                 <button onClick={() => handleDownload("Pharmaceutical")}>Pharmaceutical</button>
                 <button onClick={() => handleDownload("Nutraceutical")}>Nutraceutical</button>
-                <button onClick={() => handleDownload("Cosmetic/Derma")}>Cosmetic & Derma</button>
+                <button onClick={() => handleDownload("Cosmetic / Derma")}>Cosmetic / Derma</button>
                 <button onClick={() => handleDownload("Surgical Equipment")}>Surgical Equipment</button>
               </div>
             </div>
