@@ -1,25 +1,51 @@
-
 import "./about.css";
+
 export default function Management() {
   return (
     <>
       <h2>Management</h2>
       <p>
-        Our leadership team consists of experienced professionals guiding Alyvra
-        Pharma with strategic vision and ethical responsibility.
+        The management team at Alyvra Pharma is the driving force behind the company’s 
+        strategic direction, operational excellence, and long-term sustainability. 
+        Comprised of experienced professionals with deep insights into the healthcare 
+        ecosystem, the leadership team brings a blend of strategic foresight, 
+        operational expertise, and ethical governance.
       </p>
-      <p>Management of a company that is a pharmaceutical manufacturer is crucial because the work is specific, scientifically technical, and precise. On any day, management of a pharmaceutical manufacturing company is critical as a tiny mistake can ruin weeks’ preparation of all the departments involved. And if one mistake goes overlooked, we risk a patient’s health.  
 
-At Actiza Pharmaceutical Pvt. Ltd., we understand the delicacy of drugs and related products. Hence, our teams work hard to complete each task accurately and meticulously.  
+      <h3>Strategic Oversight & Decision Making</h3>
+      <p>
+        Alyvra Pharma’s management emphasizes structured and transparent decision-making. 
+        Every initiative, project, and operational activity is carefully assessed through 
+        comprehensive analysis, risk evaluation, and alignment with best practices. This 
+        disciplined approach allows the organization to maintain consistency and uphold 
+        high standards in a highly regulated industry.
+      </p>
 
-<h3>Our Leaders’ are Our Guiding Force:</h3>
-The promoters of Actiza pharmaceutical Pvt. Ltd. inspire the whole company and its each employee with their commitment, enthusiasm, and hard work. All three promoters have over a decade of experience in the healthcare sector, and they know in and out of this field. With the right expertise, vision, and leadership, they are proving themselves to be beacons when it comes to managing the company and its working.  
+      <h3>Operational Excellence</h3>
+      <p>
+        Through clearly defined processes and rigorous performance evaluation, management 
+        ensures that organizational objectives are achieved efficiently. This approach 
+        fosters a culture of accountability and collaboration, enabling seamless 
+        coordination between teams, stakeholders, and external partners to maintain our 
+        reputation for reliability.
+      </p>
 
-<h3>Different Departments are in Sync:</h3>
-All the departments are specified with work according to the norms and their work. They all are in sync with each other to produce medicines and related products following the guidelines of WHO, GMP, and ISO. Each department has qualified experts leading their teams, and they collaborate with other departments to ensure that quality is maintained, no hurdles arise, and each batch is completed on time.
+      <h3>Ethical Governance</h3>
+      <p>
+        Transparent communication and integrity are fundamental principles guiding our 
+        operations. These practices strengthen stakeholder confidence and establish a 
+        strong foundation for long-term credibility, fostering trust with partners and 
+        professionals across the healthcare sector.
+      </p>
 
-<h3>All Departments are Maintained:</h3>
-According to the guidelines set by the government and health departments, each department has internal scrutiny every week, and necessary steps are being taken. The timely maintenance of all the machines is done with professional technicians, the workforce is trained regularly, and management holds surprise inspections to monitor the management of particular departments and the maintenance of decorum. </p>
+      <h3>Adaptability & Future Vision</h3>
+      <p>
+        The team actively monitors emerging trends and regulatory developments, enabling 
+        timely strategic responses. By combining insight with operational agility, the 
+        management ensures that Alyvra Pharma remains resilient and capable of 
+        addressing future challenges effectively while creating long-term value for 
+        all stakeholders.
+      </p>
     </>
   );
 }

@@ -951,3 +951,126 @@
     justify-content: center;
   }
 }
+.paradigm-section {
+  padding: 80px 0;
+  background-color: #ffffff;
+  overflow: hidden;
+}
+
+.paradigm-wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.paradigm-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.subtitle {
+  color: #2c3e50;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.main-title {
+  font-size: 2.5rem;
+  color: #1a3a5a; /* Deep Pharma Blue */
+  margin: 10px 0;
+}
+
+.title-underline {
+  width: 80px;
+  height: 4px;
+  background: #27ae60; /* Professional Green */
+  margin: 0 auto;
+}
+
+.paradigm-content-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 50px;
+  align-items: center;
+}
+
+.paradigm-text p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #444;
+  margin-bottom: 20px;
+}
+
+.lead-text {
+  font-size: 1.2rem !important;
+  color: #1a3a5a !important;
+}
+
+.accreditation-badges {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.badge-item {
+  background: #f1f4f8;
+  padding: 8px 20px;
+  border-radius: 50px;
+  font-weight: 700;
+  color: #1a3a5a;
+  border: 1px solid #d1d9e6;
+}
+
+.feature-card {
+  background: #fdfdfd;
+  padding: 25px;
+  border-left: 5px solid #27ae60;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  border-radius: 0 8px 8px 0;
+}
+
+.feature-card.highlighted {
+  background: #1a3a8a;
+  color: white;
+  border-left: 5px solid #f1c40f; /* Gold accent */
+}
+
+.feature-card.highlighted h4 {
+  color: #f1c40f;
+}
+
+.paradigm-footer {
+  text-align: center;
+  margin-top: 60px;
+  padding: 40px;
+  background: #f8fafc;
+  border-radius: 15px;
+}
+
+.learn-more-btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 35px;
+  background: #1a3a8a;
+  color: white;
+  text-decoration: none;
+  border-radius: 50px;
+  transition: 0.3s;
+}
+
+.learn-more-btn:hover {
+  background: #27ae60;
+  transform: translateY(-3px);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .paradigm-content-grid {
+    grid-template-columns: 1fr;
+  }
+  .main-title {
+    font-size: 1.8rem;
+  }
+}

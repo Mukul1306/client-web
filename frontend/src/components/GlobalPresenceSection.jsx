@@ -3,7 +3,7 @@ import "./layout.css";
 
 const regions = {
   Asia: "India, Nepal, Bangladesh, Sri Lanka, Myanmar, Vietnam",
-  Africa: "Nigeria, Kenya, South Africa, Egypt, Ghana",
+  Africa: " Rawanda, Nigeria, Kenya, South Africa, Egypt, Ghana",
   "North America": "USA, Canada, Mexico",
   "South America": "Brazil, Chile, Peru, Colombia",
   "Gulf Country": "UAE, Saudi Arabia, Kuwait, Qatar",

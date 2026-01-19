@@ -1,24 +1,60 @@
-
 import "./about.css";
+
 export default function CompanyOverview() {
   return (
-    <>
+    <div className="company-overview-container">
       <h2>Company Overview</h2>
-      <h3>Our Company Alyvra Pharma Pvt. Ltd.</h3>
-      <p>
+      <h3>Reliable Healthcare Solutions for a Global Market</h3>
       
-Twelve years ago, a group of three visionaries figured out a market gap in the pharmaceutical sector, and that is how  Alyvra Pharma Pvt. Ltd. was established. The company, under the guidance of the visionaries and promoters is serving the gap through world-class manufacturing, exporting, and supplying pharmaceutical products.    
-
-Devoting to our vision and mission, we provide accomplished pharmaceutical products that we know are helping someone regain health. We feel proud and responsible for serving in the sector that is so closely associated with the most critical aspect of our lives: health.
-
-We are an Indian company serving the world. Our products and services are approved, recognized, and famous internationally. We are slowly but surely creating our footprints in the global pharmaceutical sector.
-
-We already have solid footprints in Asia Pacific, Latin America, the Middle East, Africa, and CIS countries and are expanding with manufacturing, exporting, and supplying services. We provide manufacturing and related services as well, so associating with Alyvra Pharma will be beneficial for companies as all services will be provided in one place. Alyvra Pharma Pharmaceutical has ultra-modern machines and supporting staff that are well-trained to create world-class products that are manufactured under strict national and international quality standards.
-
-Our future vision is to become an MNC with multiple manufacturing units worldwide and create products that will help humankind become healthier.
-  Alyvra Pharma is a trusted pharmaceutical company committed to delivering
-        high-quality healthcare solutions with safety, innovation, and care.
+      <p className="intro-text">
+        <strong>Alyvra Pharma Private Limited</strong> is a healthcare-focused organization 
+        committed to delivering dependable, high-quality medical and wellness solutions. 
+        We operate with a strong emphasis on quality assurance, regulatory alignment, 
+        and professional integrity, ensuring that all activities are conducted in 
+        accordance with established global healthcare standards.
       </p>
-    </>
+
+      <div className="overview-content">
+        <section className="overview-block">
+          <h4>Diversified Portfolio</h4>
+          <p>
+            Our portfolio includes pharmaceutical medicines, nutraceutical products, 
+            dermatology-focused solutions, and surgical equipment. Each category is 
+            managed with detailed attention to safety, consistency, and compliance with 
+            applicable regulatory guidelines.
+          </p>
+        </section>
+
+        <section className="overview-block">
+          <h4>Operational Excellence</h4>
+          <p>
+            Alyvra Pharma supports the availability and continuity of essential 
+            healthcare solutions through structured coordination within established 
+            supply networks. Our approach is guided by scientific knowledge and a 
+            continuous assessment of evolving industry needs.
+          </p>
+        </section>
+
+        <section className="overview-block">
+          <h4>Professional Partnerships</h4>
+          <p>
+            By fostering transparency and accountability, we work closely with 
+            healthcare professionals and institutions. This relationship-focused 
+            approach strengthens trust and reinforces our standing as a dependable 
+            participant in the healthcare sector.
+          </p>
+        </section>
+
+        <section className="overview-block">
+          <h4>Future-Focused Growth</h4>
+          <p>
+            We remain aligned with global quality benchmarks and regulatory 
+            expectations. Alyvra Pharma is focused on sustainable growth and 
+            long-term value creation, positioning itself as a trusted healthcare 
+            partner committed to industry credibility.
+          </p>
+        </section>
+      </div>
+    </div>
   );
 }

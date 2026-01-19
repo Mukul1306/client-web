@@ -7,7 +7,7 @@ export default function BlogDetails() {
   const { id } = useParams();
   const [blog, setBlog] = useState(null);
 
-  const CLOUD_NAME = "your_cloud_name"; // Change to your real Cloudinary name
+  const CLOUD_NAME = "dths8gmd3"; // Change to your real Cloudinary name
   const API_BASE = "https://client-web-dwcu.onrender.com";
 
   useEffect(() => {

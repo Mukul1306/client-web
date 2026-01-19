@@ -112,8 +112,8 @@ export default function Layout() {
 
           <div>
             <h4>Contact</h4>
-            <p>📍 Jaipur, Rajasthan</p>
-            <p>📞 +91 9XXXXXXXXX</p>
+            <p>📍10, Shri Ram Vihar, Jagatpura, Jaipur, Jaipur- 302017, Rajasthan, India</p>
+            <p>📞 +91 9993336473</p>
             <p>✉️ info@alyvrapharma.com</p>
           </div>
         </div>

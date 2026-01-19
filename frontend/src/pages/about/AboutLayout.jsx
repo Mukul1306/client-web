@@ -53,18 +53,15 @@ export default function AboutLayout() {
               <h2>Company Overview</h2>
       <h3> Alyvra Pharma Pvt. Ltd.</h3>
       <p>
-      
-Twelve years ago, a group of three visionaries figured out a market gap in the pharmaceutical sector, and that is how  Alyvra Pharma Pvt. Ltd. was established. The company, under the guidance of the visionaries and promoters is serving the gap through world-class manufacturing, exporting, and supplying pharmaceutical products.    
+  Is a healthcare-focused organization committed to delivering dependable, high-quality medical and wellness solutions across a wide range of healthcare segments. The company operates with a strong emphasis on quality assurance, regulatory alignment, and professional integrity, ensuring that all activities are conducted in accordance with established healthcare standards. By maintaining a disciplined and structured approach, Alyvra Pharma supports effective patient care while meeting the expectations of healthcare professionals and institutions within an increasingly complex and regulated healthcare environment.
 
-Devoting to our vision and mission, we provide accomplished pharmaceutical products that we know are helping someone regain health. We feel proud and responsible for serving in the sector that is so closely associated with the most critical aspect of our lives: health.
+The company’s diversified portfolio includes pharmaceutical medicines, nutraceutical products, dermatology-focused solutions, and surgical equipment, enabling Alyvra Pharma to address varied therapeutic and healthcare requirements. Each product category is carefully selected and managed with detailed attention to safety, consistency, and compliance with applicable regulatory guidelines. Alyvra Pharma aligns its offerings with globally recognized medical and wellness practices, ensuring reliability, quality, and confidence across all segments.
 
-We are an Indian company serving the world. Our products and services are approved, recognized, and famous internationally. We are slowly but surely creating our footprints in the global pharmaceutical sector.
+Alyvra Pharma operates with a comprehensive understanding of the healthcare supply and distribution landscape. Through structured coordination within established supply networks, the company supports the availability and continuity of essential healthcare solutions. Its operational approach is guided by scientific knowledge, nutritional and medical insights, and continuous assessment of healthcare trends, allowing the organization to respond responsibly to evolving industry needs.
 
-We already have solid footprints in Asia Pacific, Latin America, the Middle East, Africa, and CIS countries and are expanding with manufacturing, exporting, and supplying services. We provide manufacturing and related services as well, so associating with Alyvra Pharma will be beneficial for companies as all services will be provided in one place. Alyvra Pharma Pharmaceutical has ultra-modern machines and supporting staff that are well-trained to create world-class products that are manufactured under strict national and international quality standards.
+The company places significant emphasis on building and maintaining long-term professional relationships within the healthcare ecosystem. By fostering transparency, accountability, and collaborative engagement, Alyvra Pharma works closely with healthcare professionals, institutions, and partners to support consistent standards of care and wellness. This relationship-focused approach strengthens trust and reinforces the company’s professional standing within the healthcare community.
 
-Our future vision is to become an MNC with multiple manufacturing units worldwide and create products that will help humankind become healthier.
-  Alyvra Pharma is a trusted pharmaceutical company committed to delivering
-        high-quality healthcare solutions with safety, innovation, and care.
+By remaining aligned with global healthcare developments, quality benchmarks, and evolving regulatory expectations, Alyvra Pharma continues to strengthen its presence as a dependable and responsible participant in the healthcare sector. The company remains focused on sustainable growth, operational excellence, and long-term value creation, positioning itself as a trusted healthcare partner committed to maintaining high standards and industry credibility.
       </p>
             </div>
           </section>
@@ -74,19 +71,17 @@ Our future vision is to become an MNC with multiple manufacturing units worldwid
           <section className="about-section fade">
             <p>
              <h2>Mission & Vision</h2>
-  Our Mission & Vision
-We were established and driven by a vision, and through our mission, a specific road map, we will materialize that vision.  
+              Our Mission  <br />
 
-Mission:    
-Analyzing and understanding market gaps and creating PMF Product market fit in each nation
-Inviting and involving great minds with the company to improve the daily working process
-Gather clients’ reviews and enhance the quality of our products and services
-Collaborate with investors, experts, and market leaders
-Vision:
-Creating health awareness
-Touching the maximum population by improving their health
-Becoming a global pharmaceutical manufacturer, exporter, and supplier
-Establishing manufacturing units in various countries</p>
+At Alyvra Pharma, our mission is to make a meaningful impact on the healthcare and wellness ecosystem by ensuring access to reliable, high-quality solutions across pharmaceutical medicines, nutraceutical products, dermatological treatments, and surgical equipment. We are committed to upholding the highest standards of quality, safety, and regulatory compliance, ensuring that every product and solution we associate with meets internationally recognized healthcare and wellness benchmarks. Our focus extends beyond products; it encompasses the delivery of dependable solutions that empower healthcare professionals and institutions to provide effective, evidence-based care.  
+
+We strive to bridge the gap between scientific advancement and practical healthcare solutions. By continuously monitoring emerging medical research, global wellness trends, and evolving clinical requirements, Alyvra Pharma ensures that its offerings are relevant, reliable, and aligned with modern medical and wellness practices. Every decision we make is guided by integrity, accountability, and a patient-centered mindset, reflecting our commitment to fostering better health outcomes and contributing responsibly to the healthcare ecosystem.  <br />
+
+Our Vision <br />
+
+Alyvra Pharma envisions becoming a leading, trusted, and forward-thinking partner within the healthcare and wellness sector. Our vision is to be recognized for consistently delivering solutions that are reliable, safe, and of the highest professional standards across pharmaceutical, nutraceutical, dermatological, and surgical domains. We aim to build a lasting reputation for credibility, operational excellence, and innovation, supporting healthcare professionals and institutions in meeting both current and future medical challenges.  
+
+We aspire to create long-term value for the healthcare community by embracing scientific innovation, technological advancement, and global best practices. By fostering strong professional relationships, promoting transparency, and staying attuned to industry trends, Alyvra Pharma seeks to remain agile and responsive in a rapidly evolving healthcare landscape. Our vision is grounded in sustainable growth, ethical leadership, and a commitment to improving healthcare and wellness outcomes for communities around the world, establishing Alyvra Pharma as a reliable and respected name in the global healthcare sector.</p>
           </section>
         )}
 
@@ -96,25 +91,29 @@ Establishing manufacturing units in various countries</p>
       <p>
            <h2>Business Values</h2>
       Our Business Values
-At Alyvra Pharma Pvt. Ltd., our business values are the foundation of everything we do. They guide our actions, shape our culture, and define our commitment to excellence in the pharmaceutical industry. Our core values include:
-       Business Value
-Actiza Pharmaceutical Pvt. Ltd., like all other respected businesses, has created business values and follows them rigorously. We have weaved these values into the fundamentals of our core business idea.   
+### Business Values
 
-<h3>Quality Assurance</h3>
-If you are dealing with Actiza Pharmaceutical, then it is inevitable that you will get quality assurance for both the products that we create and the services that we offer. We pour our sweat and blood to maintain quality standards because deep down in our hearts, we understand that we are dealing with someone’s health through our products and services. Secondly, our clients depend on us, and if they struggle to get their clients, it will create a negative impact on our business as well.
+At Alyvra Pharma, our business values are the foundation upon which every strategy, decision, and operation is built. These principles are deeply embedded in the company’s culture and guide our interactions with healthcare professionals, partners, and stakeholders. By consistently adhering to these values, Alyvra Pharma ensures that it operates with integrity, accountability, and professionalism, creating a strong framework for sustainable growth and long-term credibility within the healthcare sector. Our values not only shape our internal processes but also define how we are perceived by the communities and institutions we serve.
 
-<h3>Innovation and Research</h3>
-A pharmaceutical company establishes, runs, and grows to become a leader through innovation and research, relying on this fundamental truth, we, from our seeding year, have built a system where innovation and research are the foremost things we focus on. We have fabricated the idea of Alyvra Pharmaceutical Pvt. Ltd. around innovation and research. Considering our promoters had vast experience in this area, it was a natural process for us.  
+Commitment to Quality and Compliance  
+Alyvra Pharma places the highest priority on quality and compliance in every aspect of its operations. This commitment is reflected in rigorous internal processes, continual monitoring, and adherence to globally recognized regulatory frameworks. The company ensures that every solution it facilitates meets stringent safety, efficacy, and reliability standards. Beyond regulatory requirements, Alyvra Pharma emphasizes best practices that reinforce operational excellence, creating a consistent standard of reliability that healthcare professionals and institutions can depend on. By focusing on quality and compliance, the company strengthens trust and ensures that its contributions to the healthcare ecosystem are meaningful and dependable.
 
-<h3>Global Impact</h3>
-Alyvra Pharmaceutical Pvt. Ltd. has been successful in creating a global impact through its products and services within a short period. Alyvra Pharmaceutical has formed a huge cliental in over a decade, especially in the global south. Alyvra   has become a brand for pharmaceutical manufacturing, exporting, and supplying pharmaceutical products and services. Through this, we are on the right path to achieving our vision to become a strong global leader in the pharmaceutical sector.
+Integrity and Ethical Practices  
+Integrity and ethics are central to how Alyvra Pharma conducts its business. The company prioritizes transparent communication, honest interactions, and accountability across all operations. Every decision is evaluated not only for its business impact but also for its alignment with ethical standards, ensuring that trust is maintained with all stakeholders. Alyvra Pharma’s emphasis on integrity fosters a culture where responsible decision-making is the norm, reinforcing the company’s credibility in the healthcare sector. Ethical practices guide not only daily operations but also long-term strategies, ensuring that the organization remains a dependable and respected partner.
 
-<h3>Ethical excellence</h3>
-Any business that wants to create a unique place in its respective sector needs to practice ethics, and, through ethical excellence, only can build a company that has the capacity to bring change in the world. Our business ethics are intact, and we never compromise on whether we face profit or loss because we know all the plus and minuses are temporary, and what is permanent is the trust that ethical practice brings. Nothing can bit a company with ethical excellence.
+Patient and Professional Focus  
+Alyvra Pharma places the needs of healthcare professionals and the communities they serve at the center of its business approach. Every strategy, initiative, and operational process is designed to support effective healthcare delivery and improved patient outcomes. By understanding real-world challenges faced by professionals and aligning practices with the highest standards of care, Alyvra Pharma ensures that its contributions have a tangible, positive impact. This patient- and professional-focused mindset drives innovation, enhances service quality, and strengthens the company’s role as a trusted participant in the healthcare ecosystem.
 
-<h3>Customer Centric approach</h3>
-It is an ancient saying, “Customer is king,” but it is very relevant. We understand our kings and queens and, thus, our kingdom, which is the pharmaceutical sector, very well. Our clients have always been at the centre of all our goals, strategies, and actions, which is why we proudly describe ourselves as a customer-centric company. We have never taken a step back in taking customer feedback and improving ourselves based on that feedback. Hence, Actiza Pharmaceutical has successfully created a business model that works on a win-win formula.  
-      </p>
+Collaborative Partnerships  
+Collaboration is a key pillar of Alyvra Pharma’s business philosophy. The company actively fosters long-term relationships with healthcare professionals, institutions, and industry partners, recognizing that collective expertise and shared objectives drive meaningful outcomes. These partnerships are built on mutual trust, transparency, and commitment to quality, creating an environment where all parties can benefit and grow. By prioritizing collaboration, Alyvra Pharma strengthens its professional network, ensures the consistent delivery of solutions, and positions itself as a reliable partner capable of responding to the evolving needs of the healthcare sector.
+
+Adaptability and Responsiveness  
+In an industry that is constantly changing due to scientific advancement, regulatory updates, and evolving healthcare demands, adaptability is crucial. Alyvra Pharma embraces change proactively, continuously monitoring trends and adjusting strategies to maintain relevance and operational effectiveness. This approach enables the company to respond quickly and responsibly to emerging challenges, ensuring resilience while maintaining consistency in service and quality. By combining foresight with operational flexibility, Alyvra Pharma remains agile, prepared, and capable of sustaining long-term success in a dynamic healthcare environment.
+
+Accountability and Sustainability  
+Alyvra Pharma emphasizes accountability and sustainability as essential components of its operations. Through structured governance, continuous evaluation of practices, and a commitment to responsible growth, the company ensures that its impact on the healthcare ecosystem is positive, enduring, and ethically sound. Every initiative is assessed for its long-term implications, ensuring that decisions contribute to lasting value for stakeholders, partners, and communities. This dedication to accountability and sustainable practices reinforces Alyvra Pharma’s reputation as a dependable and conscientious partner in the healthcare sector, committed to creating meaningful and enduring outcomes.
+
+Through these comprehensive business values, Alyvra Pharma continues to establish itself as a professional, reliable, and trusted participant in the healthcare industry, dedicated to excellence, ethical practices, and sustainable, long-term growth.      </p>
 
           </section>
         )}
@@ -124,18 +123,19 @@ It is an ancient saying, “Customer is king,” but it is very relevant. We und
            
       <p>
          <h2>Our Management</h2>
-         Management of a company that is a pharmaceutical manufacturer is crucial because the work is specific, scientifically technical, and precise. On any day, management of a pharmaceutical manufacturing company is critical as a tiny mistake can ruin weeks’ preparation of all the departments involved. And if one mistake goes overlooked, we risk a patient’s health.  
+        
 
-Alyvra Pharmaceutical Pvt. Ltd., we understand the delicacy of drugs and related products. Hence, our teams work hard to complete each task accurately and meticulously.  
+The management team at Alyvra Pharma is the driving force behind the company’s strategic direction, operational excellence, and long-term sustainability. Comprised of experienced professionals with deep insights into the healthcare ecosystem, the leadership team brings a blend of strategic foresight, operational expertise, and ethical governance. Their approach ensures that the organization operates with discipline, accountability, and a strong focus on delivering value to stakeholders while maintaining credibility and trust across the healthcare sector.
 
-<h3>Our Leaders’ are Our Guiding Force:</h3>
-The promoters of Alyvra Pharmaceutical Pvt. Ltd. inspire the whole company and its each employee with their commitment, enthusiasm, and hard work. All three promoters have over a decade of experience in the healthcare sector, and they know in and out of this field. With the right expertise, vision, and leadership, they are proving themselves to be beacons when it comes to managing the company and its working.  
+Alyvra Pharma’s management emphasizes structured and transparent decision-making. Every initiative, project, and operational activity is carefully assessed through comprehensive analysis, risk evaluation, and alignment with best practices. This disciplined approach allows the organization to maintain consistency, mitigate risks, and uphold high standards in an ever-evolving and highly regulated industry. The leadership team’s ability to anticipate challenges and proactively plan for contingencies ensures stability, reliability, and operational resilience across all levels of the company.
 
-<h3>Different Departments are in Sync:</h3>
-All the departments are specified with work according to the norms and their work. They all are in sync with each other to produce medicines and related products following the guidelines of WHO, GMP, and ISO. Each department has qualified experts leading their teams, and they collaborate with other departments to ensure that quality is maintained, no hurdles arise, and each batch is completed on time.
+Operational excellence is a key focus area for the management team. Through clearly defined processes, continuous monitoring, and rigorous performance evaluation, management ensures that organizational objectives are achieved efficiently and effectively. This approach fosters a culture of accountability, collaboration, and high performance, enabling seamless coordination between teams, stakeholders, and external partners. By emphasizing operational rigor, the management ensures that Alyvra Pharma maintains its reputation for reliability and professionalism.
 
-<h3>All Departments are Maintained:</h3>
-According to the guidelines set by the government and health departments, each department has internal scrutiny every week, and necessary steps are being taken. The timely maintenance of all the machines is done with professional technicians, the workforce is trained regularly, and management holds surprise inspections to monitor the management of particular departments and the maintenance of decorum. </p>
+The management also places significant emphasis on ethical leadership and governance. Transparent communication, integrity in decision-making, and responsible oversight are fundamental principles that guide the company’s operations. These practices not only strengthen stakeholder confidence but also establish a strong foundation for long-term credibility, fostering trust with partners, institutions, and professionals across the industry.
+
+Adaptability and forward-thinking are integral to the management philosophy at Alyvra Pharma. The team actively monitors emerging trends, regulatory developments, and shifts in the healthcare landscape, enabling timely and informed strategic responses. By combining insight with operational agility, the management ensures that the company remains relevant, resilient, and capable of addressing future challenges effectively.
+
+Through a combination of experience, ethical governance, strategic planning, and operational discipline, the management team at Alyvra Pharma continues to guide the organization toward sustainable growth, operational excellence, and enduring trust within the healthcare ecosystem. Their leadership reflects a commitment to professionalism, responsibility, and long-term value creation for all stakeholders. </p>
           </section>
         )}
       </div>

@@ -4,7 +4,7 @@ import "./globalPresence.css";
 
 const regions = {
   Asia: "India, Nepal, Bangladesh, Sri Lanka, Myanmar, Vietnam",
-  Africa: "Nigeria, Kenya, South Africa, Egypt, Ghana",
+  Africa: " Rawanda, Nigeria, Kenya, South Africa, Egypt, Ghana",
   "North America": "USA, Canada, Mexico",
   "South America": "Brazil, Chile, Peru, Colombia",
   "Gulf Country": "UAE, Saudi Arabia, Kuwait, Qatar",
@@ -37,11 +37,16 @@ export default function GlobalPresence() {
               systems, manufacturing capability, and export governance 
               (<a href="https://www.ibef.org/industry/pharmaceutical-india" target="_blank" rel="noopener noreferrer" className="external-link">Reference: IBEF Overview</a>).
             </p>
-            <p>
-              Our organizational structure is aligned with internationally accepted pharmaceutical manufacturing standards in 
-              <Link to="/about" className="content-link"> India</Link>, supporting quality-driven operations, documentation accuracy, and 
-              regulatory readiness for cross-border business engagement.
-            </p>
+           <p>
+  Our organizational structure is aligned with internationally accepted pharmaceutical manufacturing standards in 
+  <a 
+    href="https://pharmexcil.com" 
+    target="_blank" 
+    rel="noopener noreferrer" 
+    className="content-link"
+  > India</a>, supporting quality-driven operations, documentation accuracy, and 
+  regulatory readiness for cross-border business engagement.
+</p>
             <p>
               The global pharmaceutical demand continues to expand across regulated healthcare markets, driven by 
               preventive medicine and nutrition-based interventions 
@@ -61,6 +66,7 @@ export default function GlobalPresence() {
               <li><strong>GMP:</strong> Good Manufacturing Practices under Indian Drugs & Cosmetics Rules.</li>
               <li><strong>FSSAI:</strong> Nutraceutical compliance regulated by the <a href="https://www.fssai.gov.in/" target="_blank" rel="noopener noreferrer" className="inline-link">FSSAI</a>.</li>
               <li><strong>Medical Device Rules:</strong> Compliance as per Indian Medical Device Rules.</li>
+              <li><strong>ISO:</strong> International Organization for Standardization – Quality Management Systems</li>
             </ul>
           </div>
         </div>
