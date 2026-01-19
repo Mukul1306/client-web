@@ -39,7 +39,7 @@ const upload = multer({ storage: storage });
 
   app.use(cors({
    origin: [
-    "https://effulgent-melomakarona-c8187e.netlify.app"
+    "https://ephemeral-trifle-daa059.netlify.app"
   ],
    
   methods: ["GET", "POST", "PUT", "DELETE"],
