@@ -37,11 +37,15 @@ const upload = multer({ storage: storage });
     MIDDLEWARE
 ======================= */
 app.use(cors({
-  origin: "https://stalwart-kataifi-db1c97.netlify.app",
+  origin: [
+    "https://polite-entremet-a89638.netlify.app",
+    "https://stalwart-kataifi-db1c97.netlify.app",
+    "http://localhost:3000", // Recommended: keep this for local testing
+    "http://localhost:5173"  // Recommended: for Vite local testing
+  ],
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
-
 app.get("/", (req, res) => {
   res.status(200).send("Alyvra Pharmatech Backend API is Live and Running!");
 });
