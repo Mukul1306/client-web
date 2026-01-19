@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
 const multer = require('multer');
+// Inside backend/routes/catalog.js
 const cloudinary = require('../config/cloudinary'); // Ensure this path is correct
 const Catalog = require('../models/Catalog');
 
@@ -18,6 +19,7 @@ const storage = new CloudinaryStorage({
     },
   },
 });
+
 
 const upload = multer({ 
   storage,
