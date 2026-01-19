@@ -10,16 +10,26 @@ router.get("/", async (req, res) => {
 });
 
 /* ADD BLOG */
+/* ADD BLOG */
 router.post("/add", upload.single("image"), async (req, res) => {
-  const blog = new Blog({
-    title: req.body.title,
-    excerpt: req.body.excerpt,
-    content: req.body.content,
-    image: req.file.filename,
-  });
+  try {
+    if (!req.file) {
+      return res.status(400).json({ message: "Image upload failed" });
+    }
 
-  await blog.save();
-  res.json({ message: "Blog added" });
+    const blog = new Blog({
+      title: req.body.title,
+      excerpt: req.body.excerpt,
+      content: req.body.content,
+      // FIXED: Use req.file.path to get the full https://res.cloudinary.com/... URL
+      image: req.file.path, 
+    });
+
+    await blog.save();
+    res.json({ message: "Blog added successfully", blog });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
 /* DELETE BLOG */

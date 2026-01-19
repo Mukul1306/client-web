@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"; // Added React import here
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import "./admin.css";
@@ -7,19 +7,29 @@ export default function GalleryAdmin() {
   const [images, setImages] = useState([]);
   const [file, setFile] = useState(null);
   const [preview, setPreview] = useState(null);
+  const [isUploading, setIsUploading] = useState(false);
+
+  const API_BASE = "https://client-web-dwcu.onrender.com";
 
   const loadImages = async () => {
     try {
-      const res = await axios.get("https://client-web-dwcu.onrender.com/api/gallery");
+      const res = await axios.get(`${API_BASE}/api/gallery`);
       setImages(res.data);
     } catch (err) {
-      toast.error("Failed to load gallery");
+      toast.error("Failed to load gallery data");
     }
   };
 
   useEffect(() => {
     loadImages();
   }, []);
+
+  // --- SMART IMAGE HELPER ---
+  const getImageUrl = (imageSource) => {
+    if (!imageSource) return "https://via.placeholder.com/150";
+    if (imageSource.startsWith("http")) return imageSource; // Cloudinary
+    return `${API_BASE}/uploads/${imageSource}`; // Local server uploads
+  };
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
@@ -30,30 +40,32 @@ export default function GalleryAdmin() {
   };
 
   const uploadImage = async () => {
-    if (!file) {
-      toast.error("Please select an image");
-      return;
-    }
+    if (!file) return toast.error("Please select an image");
 
+    setIsUploading(true);
     try {
       const data = new FormData();
       data.append("image", file);
-      await axios.post("https://client-web-dwcu.onrender.com/api/gallery/add", data);
-      toast.success("Image uploaded successfully");
+      
+      await axios.post(`${API_BASE}/api/gallery/add`, data);
+      toast.success("Image added to gallery!");
 
       setFile(null);
       setPreview(null);
       loadImages();
     } catch (err) {
-      toast.error("Upload failed");
+      console.error(err);
+      toast.error("Upload failed - is the server Live?");
+    } finally {
+      setIsUploading(false);
     }
   };
 
   const deleteImage = async (id) => {
-    if (!window.confirm("Are you sure you want to delete this image?")) return;
+    if (!window.confirm("Permanently delete this image?")) return;
 
     try {
-      await axios.delete(`https://client-web-dwcu.onrender.com/api/gallery/delete/${id}`);
+      await axios.delete(`${API_BASE}/api/gallery/delete/${id}`);
       toast.success("Image removed");
       loadImages();
     } catch (err) {
@@ -70,7 +82,12 @@ export default function GalleryAdmin() {
           {preview ? (
             <div className="image-preview-wrapper">
               <img src={preview} alt="Preview" className="img-preview" />
-              <button className="remove-img-btn" onClick={() => {setFile(null); setPreview(null);}}>×</button>
+              <button 
+                className="remove-img-btn" 
+                onClick={() => {setFile(null); setPreview(null);}}
+              >
+                ×
+              </button>
             </div>
           ) : (
             <div className="upload-placeholder">
@@ -83,33 +100,35 @@ export default function GalleryAdmin() {
           )}
         </div>
         {file && (
-          <button className="save-btn" onClick={uploadImage} style={{ marginTop: '15px' }}>
-            Confirm Upload
+          <button 
+            className="save-btn" 
+            onClick={uploadImage} 
+            disabled={isUploading}
+            style={{ marginTop: '15px', opacity: isUploading ? 0.7 : 1 }}
+          >
+            {isUploading ? "Uploading..." : "Confirm Upload"}
           </button>
         )}
       </div>
 
       <div className="gallery-grid">
         {images.map((img) => (
-          /* FIXED: React.Fragment now works because React is imported */
-          <React.Fragment key={img._id}> 
-            <div className="gallery-item-card">
-              <img 
-                src={img.image} 
-                alt="gallery" 
-                className="gallery-preview-img"
-              />
-              <div className="gallery-actions">
-                <button 
-                  className="delete-btn" 
-                  /* FIXED: Changed handleDelete to deleteImage to match your function name */
-                  onClick={() => deleteImage(img._id)}
-                >
-                  🗑️ DELETE
-                </button>
-              </div>
+          <div className="gallery-item-card" key={img._id}>
+            <img 
+              src={getImageUrl(img.image)} 
+              alt="gallery" 
+              className="gallery-preview-img"
+              onError={(e) => { e.target.src = "https://via.placeholder.com/150"; }}
+            />
+            <div className="gallery-actions">
+              <button 
+                className="delete-btn" 
+                onClick={() => deleteImage(img._id)}
+              >
+                🗑️ DELETE
+              </button>
             </div>
-          </React.Fragment>
+          </div>
         ))}
       </div>
     </div>
