@@ -110,10 +110,6 @@ export default function ProductDetails() {
                 <td>{product.packaging}</td>
               </tr>
               <tr>
-                <td><strong>MANUFACTURER:</strong></td>
-                <td>{product.manufacturer || "N/A"}</td>
-              </tr>
-              <tr>
                 <td><strong>THERAPEUTIC USE:</strong></td>
                 <td>{product.therapeuticUse || "N/A"}</td>
               </tr>

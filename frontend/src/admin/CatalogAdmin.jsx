@@ -28,11 +28,9 @@ export default function CatalogAdmin() {
 
     setLoading(true);
     const formData = new FormData();
-    formData.append("catalogPdf", file);
-    
-    // FIXED: Do NOT replace "/" with "_". 
-    // The backend is now designed to handle the slash in "Cosmetic / Derma".
-    formData.append("type", category);
+// Append "type" FIRST so the backend has it before processing the file
+formData.append("type", category); 
+formData.append("catalogPdf", file)
 
     try {
       await axios.post(`${API_BASE}/api/catalogs/upload`, formData, {
