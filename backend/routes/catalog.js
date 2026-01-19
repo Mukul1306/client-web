@@ -1,30 +1,27 @@
 const express = require('express');
 const router = express.Router();
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
 const multer = require('multer');
-const fs = require('fs');
-const path = require('path');
+const cloudinary = require('../config/cloudinary'); // Ensure this path is correct
 const Catalog = require('../models/Catalog');
 
-// AUTOMATIC FOLDER CREATION
-const uploadDir = path.join(__dirname, '../uploads/catalogs');
-if (!fs.existsSync(uploadDir)) {
-  fs.mkdirSync(uploadDir, { recursive: true });
-}
-
-// Multer Storage
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, uploadDir),
-  filename: (req, file, cb) => {
-    // Replace slashes with underscores for the physical file name
-    const rawType = req.body.type || "unknown";
-    const safeType = rawType.replace(/\//g, "_"); 
-    cb(null, `${safeType}-${Date.now()}.pdf`);
-  }
+// Configure Cloudinary Storage for PDFs
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: 'alyvra_catalogs',
+    resource_type: 'auto', // MUST be auto to support PDF files
+    public_id: (req, file) => {
+      const rawType = req.body.type || "unknown";
+      const safeType = rawType.replace(/\//g, "_");
+      return `${safeType}-${Date.now()}`;
+    },
+  },
 });
 
-const upload = multer({
+const upload = multer({ 
   storage,
-  limits: { fileSize: 20 * 1024 * 1024 }
+  limits: { fileSize: 20 * 1024 * 1024 } // 20MB limit
 });
 
 // ================= LIST =================
@@ -42,46 +39,18 @@ router.post('/upload', upload.single('catalogPdf'), async (req, res) => {
   try {
     if (!req.file) return res.status(400).json({ message: "No file received" });
 
-    const rawType = req.body.type; // e.g., "Cosmetic/Derma"
-    const pdfUrl = req.file.filename;
+    const rawType = req.body.type; 
+    // IMPORTANT: Save the full Cloudinary URL (req.file.path)
+    const pdfUrl = req.file.path; 
 
-    // We search/save using the RAW type (with slash) so it's easy to find later
-    const oldCatalog = await Catalog.findOne({ type: rawType });
-    if (oldCatalog) {
-      const oldPath = path.join(uploadDir, oldCatalog.pdfUrl);
-      if (fs.existsSync(oldPath)) fs.unlinkSync(oldPath);
-    }
-
+    // We search/save using the RAW type
     await Catalog.findOneAndUpdate(
       { type: rawType },
       { pdfUrl, updatedAt: Date.now() },
       { upsert: true }
     );
 
-    res.status(200).json({ message: "Upload success!" });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
-
-// ================= FIXED DOWNLOAD =================
-// The (:type*) syntax allows slashes in the URL (captures Cosmetic/Derma)
-router.get('/download/:type', async (req, res) => {
-  try {
-    // Captured string like "Cosmetic/Derma"
-    const type = req.params.type || req.params[0]; 
-
-    const catalog = await Catalog.findOne({ type: type });
-    if (!catalog) return res.status(404).send("Catalog entry not found in database");
-
-    const filePath = path.join(uploadDir, catalog.pdfUrl);
-    if (!fs.existsSync(filePath)) {
-      return res.status(404).send("PDF file missing from storage");
-    }
-
-    // Clean filename for the user download
-    const downloadName = type.replace(/\//g, "_");
-    res.download(filePath, `${downloadName}-Catalog.pdf`);
+    res.status(200).json({ message: "Upload success!", url: pdfUrl });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -90,14 +59,10 @@ router.get('/download/:type', async (req, res) => {
 // ================= DELETE =================
 router.delete('/:id', async (req, res) => {
   try {
-    const catalog = await Catalog.findById(req.params.id);
-    if (!catalog) return res.status(404).json({ message: "Catalog not found" });
-
-    const filePath = path.join(uploadDir, catalog.pdfUrl);
-    if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
-
+    // Note: Cloudinary deletion requires the public_id. 
+    // For now, we delete the database entry.
     await Catalog.findByIdAndDelete(req.params.id);
-    res.status(200).json({ message: "Catalog deleted successfully" });
+    res.status(200).json({ message: "Catalog deleted from database" });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
