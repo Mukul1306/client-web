@@ -20,15 +20,36 @@ export default function Layout() {
   }, []);
 
   // 4. ADDED THE MISSING DOWNLOAD FUNCTION
-  const handleDownload = (type) => {
-    const item = catalogs.find(c => c.type === type);
-    if (item && item.pdfUrl) {
-      // Opens the Cloudinary PDF link directly
+ const handleDownload = async (type) => {
+  const item = catalogs.find(c => c.type === type);
+  
+  if (item && item.pdfUrl) {
+    try {
+      // 1. Fetch the file as a blob to bypass browser "view" mode
+      const response = await fetch(item.pdfUrl);
+      const blob = await response.blob();
+      
+      // 2. Create a temporary local URL for the blob
+      const url = window.URL.createObjectURL(blob);
+      
+      // 3. Create a hidden 'a' tag and click it programmatically
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', `${type}-Catalog.pdf`); // This forces download
+      document.body.appendChild(link);
+      link.click();
+      
+      // 4. Cleanup
+      link.parentNode.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      // Fallback: If blob fetch fails, try opening in new tab
       window.open(item.pdfUrl, "_blank");
-    } else {
-      alert("This catalog has not been uploaded yet. Please check the Admin panel.");
     }
-  };
+  } else {
+    alert("Catalog not found. Please upload it in the Admin panel.");
+  }
+};
 
   // Close menu on resize
   useEffect(() => {
