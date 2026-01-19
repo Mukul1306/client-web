@@ -37,7 +37,7 @@ const upload = multer({ storage: storage });
     MIDDLEWARE
 ======================= */
 app.use(cors({
-  origin: "https://polite-entremet-a89638.netlify.app",
+  origin: "https://stalwart-kataifi-db1c97.netlify.app",
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
