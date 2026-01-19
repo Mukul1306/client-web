@@ -19,14 +19,17 @@ export default function BlogDetails() {
 
   if (!blog) return <p style={{ padding: "40px" }}>Loading...</p>;
 
-  const getImageUrl = (imageName) => {
-    if (!imageName) return "https://via.placeholder.com/800x400?text=No+Image";
-    if (imageName.startsWith("http")) return imageName;
-    if (imageName.length > 20 && !imageName.includes(".")) {
-       return `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/${imageName}.png`;
-    }
-    return `${API_BASE}/uploads/${imageName}`;
-  };
+ const getImageUrl = (imageSource) => {
+  if (!imageSource) return "https://via.placeholder.com/400x200";
+
+  // If the link starts with http, it's a Cloudinary link—use it directly!
+  if (imageSource.startsWith("http")) {
+    return imageSource;
+  }
+
+  // ONLY use the API_BASE if it's an old local filename
+  return `https://client-web-dwcu.onrender.com/uploads/${imageSource}`;
+};
 
   return (
     <div className="blog-wrapper">
