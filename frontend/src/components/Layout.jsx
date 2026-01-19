@@ -20,34 +20,22 @@ export default function Layout() {
   }, []);
 
   // 4. ADDED THE MISSING DOWNLOAD FUNCTION
- const handleDownload = async (type) => {
+// Layout.jsx updated handleDownload
+const handleDownload = (type) => {
   const item = catalogs.find(c => c.type === type);
   
   if (item && item.pdfUrl) {
-    try {
-      // 1. Fetch the file as a blob to bypass browser "view" mode
-      const response = await fetch(item.pdfUrl);
-      const blob = await response.blob();
-      
-      // 2. Create a temporary local URL for the blob
-      const url = window.URL.createObjectURL(blob);
-      
-      // 3. Create a hidden 'a' tag and click it programmatically
-      const link = document.createElement('a');
-      link.href = url;
-      link.setAttribute('download', `${type}-Catalog.pdf`); // This forces download
-      document.body.appendChild(link);
-      link.click();
-      
-      // 4. Cleanup
-      link.parentNode.removeChild(link);
-      window.URL.revokeObjectURL(url);
-    } catch (error) {
-      // Fallback: If blob fetch fails, try opening in new tab
-      window.open(item.pdfUrl, "_blank");
-    }
+    // This Cloudinary transformation 'fl_attachment' forces a download
+    const downloadUrl = item.pdfUrl.replace('/upload/', '/upload/fl_attachment/');
+    
+    const link = document.createElement('a');
+    link.href = downloadUrl;
+    link.setAttribute('download', `${type}-Catalog.pdf`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   } else {
-    alert("Catalog not found. Please upload it in the Admin panel.");
+    alert("Catalog not found.");
   }
 };
 
