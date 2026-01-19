@@ -9,6 +9,10 @@ export default function ProductsPage() {
   const [selectedCategories, setSelectedCategories] = useState([]); 
   const navigate = useNavigate();
 
+  // REPLACE 'your_cloud_name' with your actual Cloudinary name
+  const CLOUD_NAME = "your_cloud_name"; 
+  const API_BASE = "https://client-web-dwcu.onrender.com";
+
   const mainDivisions = [
     { name: "Pharmaceutical" },
     { name: "Nutraceutical"},
@@ -25,17 +29,24 @@ export default function ProductsPage() {
   ];
 
   useEffect(() => {
-axios.get("https://client-web-dwcu.onrender.com/api/products")
+    axios.get(`${API_BASE}/api/products`)
       .then((res) => setProducts(res.data))
       .catch((err) => console.error("Error fetching products:", err));
   }, []);
+
+  // --- SMART IMAGE HELPER ---
+  const getImageUrl = (imageSource) => {
+    if (!imageSource) return "/placeholder-medicine.png";
+    if (imageSource.startsWith("http")) return imageSource;
+    if (imageSource.includes(".")) return `${API_BASE}/uploads/${imageSource}`;
+    return `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/${imageSource}.png`;
+  };
 
   const toggleCategory = (catName) => {
     if (catName === "All") {
       setSelectedCategories([]);
       return;
     }
-    // Improved toggle logic for better state management
     const isSelected = selectedCategories.some(c => c.toLowerCase() === catName.toLowerCase());
     if (isSelected) {
       setSelectedCategories(selectedCategories.filter((c) => c.toLowerCase() !== catName.toLowerCase()));
@@ -44,11 +55,8 @@ axios.get("https://client-web-dwcu.onrender.com/api/products")
     }
   };
 
-  // --- OPTIMIZED FILTERING LOGIC ---
   const filteredProducts = products.filter((p) => {
     const search = searchTerm.toLowerCase().trim();
-
-    // 1. Process Categories into a clean array (Safe Handling)
     let rawCats = [];
     try {
       rawCats = Array.isArray(p.categories) ? p.categories : JSON.parse(p.categories || "[]");
@@ -56,26 +64,21 @@ axios.get("https://client-web-dwcu.onrender.com/api/products")
       rawCats = p.categories ? p.categories.split(",").map(c => c.trim()) : [];
     }
     
-    // Safety: Ensure tags are strings and stripped of legacy bracket noise
     const cleanTags = rawCats.map(tag => 
       tag ? tag.toString().replace(/[[\]"]/g, "").trim().toLowerCase() : ""
     ).filter(t => t !== "");
 
-    // 2. CREATE A GLOBAL SEARCH STRING (Includes null-safety)
     const globalString = [
       p.name || "",
-      p.composition || "", // Salt
+      p.composition || "",
       p.strength || "",
-      p.form || "",        // e.g., sryp
+      p.form || "",
       p.packaging || "",
       p.therapeuticUse || "",
       ...cleanTags
     ].join(" ").toLowerCase();
 
-    // 3. Match the search term
     const matchesSearch = search === "" || globalString.includes(search);
-
-    // 4. Match Category Pills (Robust case-insensitive check)
     const matchesCategory = 
       selectedCategories.length === 0 || 
       selectedCategories.some(sel => 
@@ -92,7 +95,7 @@ axios.get("https://client-web-dwcu.onrender.com/api/products")
           <div className="search-container">
             <input
               type="text"
-              placeholder="Search by name, salt (lamon), form (sryp), etc..."
+              placeholder="Search by name, salt, form, etc..."
               className="modern-search-input"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
@@ -115,7 +118,6 @@ axios.get("https://client-web-dwcu.onrender.com/api/products")
                 className={`category-pill ${selectedCategories.some(sel => sel.toLowerCase() === cat.name.toLowerCase()) ? "active" : ""}`} 
                 onClick={() => toggleCategory(cat.name)}
               >
-                <span className="cat-icon">{cat.icon}</span>
                 <span className="cat-name">{cat.name}</span>
               </div>
             ))}
@@ -147,7 +149,6 @@ axios.get("https://client-web-dwcu.onrender.com/api/products")
       <div className="products-grid-full">
         {filteredProducts.length > 0 ? (
           filteredProducts.map((p) => {
-            // Re-cleaning tags for clean display on the cards
             let displayTags = [];
             try {
               const parsed = Array.isArray(p.categories) ? p.categories : JSON.parse(p.categories || "[]");
@@ -160,14 +161,15 @@ axios.get("https://client-web-dwcu.onrender.com/api/products")
               <div key={p._id} className="featured-card">
                 <div className="card-click-area" onClick={() => navigate(`/product/${p._id}`)}>
                   <div className="card-image-box">
-                <img 
-  src={`https://client-web-dwcu.onrender.com/uploads/${p.image}`} 
-  alt={p.name} 
-  onError={(e) => { 
-    e.target.onerror = null; // Prevents infinite loop
-    e.target.src = "/placeholder-medicine.png"; 
-  }}
-/>
+                    {/* FIXED: Using getImageUrl helper */}
+                    <img 
+                      src={getImageUrl(p.image)} 
+                      alt={p.name} 
+                      onError={(e) => { 
+                        e.target.onerror = null; 
+                        e.target.src = "/placeholder-medicine.png"; 
+                      }}
+                    />
                   </div>
                   <div className="product-details">
                     <div className="category-tags">

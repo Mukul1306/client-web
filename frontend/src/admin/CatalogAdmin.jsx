@@ -5,21 +5,19 @@ export default function CatalogAdmin() {
   const [file, setFile] = useState(null);
   const [category, setCategory] = useState("Pharmaceutical");
   const [loading, setLoading] = useState(false);
-  const [catalogs, setCatalogs] = useState([]); // State to hold real data from DB
+  const [catalogs, setCatalogs] = useState([]);
 
-  // 1. Function to fetch the list of catalogs from backend
+  const API_BASE = "https://client-web-dwcu.onrender.com";
+
   const fetchCatalogs = async () => {
     try {
-    // Fetches the catalog list from your live Render server
-const res = await axios.get("https://client-web-dwcu.onrender.com/api/catalogs/list");
-
+      const res = await axios.get(`${API_BASE}/api/catalogs/list`);
       setCatalogs(res.data);
     } catch (err) {
       console.error("Error fetching catalogs:", err);
     }
   };
 
-  // 2. Fetch catalogs when the page loads
   useEffect(() => {
     fetchCatalogs();
   }, []);
@@ -31,15 +29,18 @@ const res = await axios.get("https://client-web-dwcu.onrender.com/api/catalogs/l
     setLoading(true);
     const formData = new FormData();
     formData.append("catalogPdf", file);
-   formData.append("type", category.replace("/", "_"));
-
+    
+    // FIXED: Do NOT replace "/" with "_". 
+    // The backend is now designed to handle the slash in "Cosmetic / Derma".
+    formData.append("type", category);
 
     try {
-      await axios.post("https://client-web-dwcu.onrender.com/api/catalogs/upload", formData, {
-  headers: { "Content-Type": "multipart/form-data" },
-});
+      await axios.post(`${API_BASE}/api/catalogs/upload`, formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
       alert("Catalog updated successfully!");
-      fetchCatalogs(); // Refresh the list after upload
+      setFile(null); // Clear input
+      fetchCatalogs(); 
     } catch (err) {
       alert("Upload failed. Check backend connection.");
     } finally {
@@ -47,16 +48,13 @@ const res = await axios.get("https://client-web-dwcu.onrender.com/api/catalogs/l
     }
   };
 
-  // 3. Function to handle Deletion
   const handleDelete = async (id) => {
-    if (window.confirm("Are you sure you want to delete this catalog? This will remove the file from the server.")) {
+    if (window.confirm("Are you sure you want to delete this catalog?")) {
       try {
-      // This sends the delete request to your live Render server
-await axios.delete(`https://client-web-dwcu.onrender.com/api/catalogs/${id}`);
+        await axios.delete(`${API_BASE}/api/catalogs/${id}`);
         alert("Catalog deleted successfully!");
-        fetchCatalogs(); // Refresh the list after deletion
+        fetchCatalogs();
       } catch (err) {
-        console.error("Delete error:", err);
         alert("Failed to delete catalog.");
       }
     }
@@ -70,7 +68,8 @@ await axios.delete(`https://client-web-dwcu.onrender.com/api/catalogs/${id}`);
           <select value={category} onChange={(e) => setCategory(e.target.value)}>
             <option value="Pharmaceutical">Pharmaceutical</option>
             <option value="Nutraceutical">Nutraceutical</option>
-            <option value="Cosmetic/Derma">Cosmetic/Derma</option>
+            {/* Added spaces to match your division filter list */}
+            <option value="Cosmetic / Derma">Cosmetic / Derma</option>
             <option value="Surgical Equipment">Surgical Equipment</option>
           </select>
 
@@ -80,7 +79,7 @@ await axios.delete(`https://client-web-dwcu.onrender.com/api/catalogs/${id}`);
             onChange={(e) => setFile(e.target.files[0])}
           />
 
-          <button type="submit" disabled={loading}>
+          <button type="submit" disabled={loading} className="upload-btn">
             {loading ? "Uploading..." : "UPLOAD PDF"}
           </button>
         </form>
@@ -90,7 +89,7 @@ await axios.delete(`https://client-web-dwcu.onrender.com/api/catalogs/${id}`);
           <table className="admin-table" style={{ width: "100%", borderCollapse: "collapse" }}>
             <thead>
               <tr style={{ background: "#f4f4f4" }}>
-                <th style={{ padding: "10px" }}>Catalog Type</th>
+                <th style={{ padding: "10px", textAlign: "left" }}>Catalog Type</th>
                 <th>Status</th>
                 <th>Actions</th>
               </tr>
@@ -100,19 +99,20 @@ await axios.delete(`https://client-web-dwcu.onrender.com/api/catalogs/${id}`);
                 catalogs.map((cat) => (
                   <tr key={cat._id} style={{ borderBottom: "1px solid #ddd" }}>
                     <td style={{ padding: "10px" }}><strong>{cat.type}</strong></td>
-                    <td><span className="status-badge">Live</span></td>
+                    <td><span className="status-badge live">Live</span></td>
                     <td style={{ display: "flex", gap: "10px", padding: "10px" }}>
-                   <a
- href={`https://client-web-dwcu.onrender.com/api/catalogs/download/${encodeURIComponent(cat.type)}`}
-
-
-  className="view-btn"
-  style={{ color: "blue", textDecoration: "none" }}
->
+                      <a
+                        href={`${API_BASE}/api/catalogs/download/${encodeURIComponent(cat.type)}`}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="view-btn"
+                        style={{ color: "blue", textDecoration: "none" }}
+                      >
                         View
                       </a>
                       <button
                         onClick={() => handleDelete(cat._id)}
+                        className="delete-btn-table"
                         style={{
                           background: "#ff4d4d",
                           color: "white",

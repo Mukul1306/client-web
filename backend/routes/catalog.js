@@ -15,8 +15,9 @@ if (!fs.existsSync(uploadDir)) {
 const storage = multer.diskStorage({
   destination: (req, file, cb) => cb(null, uploadDir),
   filename: (req, file, cb) => {
+    // Replace slashes with underscores for the physical file name
     const rawType = req.body.type || "unknown";
-    const safeType = rawType.replace(/\//g, "_"); // cosmetic_derma
+    const safeType = rawType.replace(/\//g, "_"); 
     cb(null, `${safeType}-${Date.now()}.pdf`);
   }
 });
@@ -25,7 +26,6 @@ const upload = multer({
   storage,
   limits: { fileSize: 20 * 1024 * 1024 }
 });
-
 
 // ================= LIST =================
 router.get('/list', async (req, res) => {
@@ -37,56 +37,55 @@ router.get('/list', async (req, res) => {
   }
 });
 
-
 // ================= UPLOAD =================
 router.post('/upload', upload.single('catalogPdf'), async (req, res) => {
   try {
     if (!req.file) return res.status(400).json({ message: "No file received" });
 
-    const rawType = req.body.type;
-    const safeType = rawType.replace(/\//g, "_");
+    const rawType = req.body.type; // e.g., "Cosmetic/Derma"
     const pdfUrl = req.file.filename;
 
-    const oldCatalog = await Catalog.findOne({ type: safeType });
+    // We search/save using the RAW type (with slash) so it's easy to find later
+    const oldCatalog = await Catalog.findOne({ type: rawType });
     if (oldCatalog) {
       const oldPath = path.join(uploadDir, oldCatalog.pdfUrl);
       if (fs.existsSync(oldPath)) fs.unlinkSync(oldPath);
     }
 
     await Catalog.findOneAndUpdate(
-      { type: safeType },
+      { type: rawType },
       { pdfUrl, updatedAt: Date.now() },
       { upsert: true }
     );
 
     res.status(200).json({ message: "Upload success!" });
   } catch (err) {
-    console.error(err);
     res.status(500).json({ error: err.message });
   }
 });
 
-
-// ================= DOWNLOAD =================
-router.get('/download/:type', async (req, res) => {
+// ================= FIXED DOWNLOAD =================
+// The (:type*) syntax allows slashes in the URL (captures Cosmetic/Derma)
+router.get('/download/(:type*)', async (req, res) => {
   try {
-    const rawType = decodeURIComponent(req.params.type); // Cosmetic/Derma
-    const safeType = rawType.replace(/\//g, "_");
+    // Captured string like "Cosmetic/Derma"
+    const type = req.params.type || req.params[0]; 
 
-    const catalog = await Catalog.findOne({ type: safeType });
-    if (!catalog) return res.status(404).send("Catalog not found");
+    const catalog = await Catalog.findOne({ type: type });
+    if (!catalog) return res.status(404).send("Catalog entry not found in database");
 
     const filePath = path.join(uploadDir, catalog.pdfUrl);
     if (!fs.existsSync(filePath)) {
-      return res.status(404).send("PDF missing from storage");
+      return res.status(404).send("PDF file missing from storage");
     }
 
-    res.download(filePath, `${rawType}-Catalog.pdf`);
+    // Clean filename for the user download
+    const downloadName = type.replace(/\//g, "_");
+    res.download(filePath, `${downloadName}-Catalog.pdf`);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
-
 
 // ================= DELETE =================
 router.delete('/:id', async (req, res) => {

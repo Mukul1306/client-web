@@ -10,13 +10,16 @@ export default function AddProduct() {
     form: "",
     packaging: "",
     therapeuticUse: "",
-    manufacturer: "", // FIX: Added missing field
+    manufacturer: "", // Fixed: Field is here
     description: "",
     categories: [] 
   });
 
   const [categoryInput, setCategoryInput] = useState(""); 
   const [image, setImage] = useState(null);
+  const [preview, setPreview] = useState(null);
+
+  const API_BASE = "https://client-web-dwcu.onrender.com";
 
   const mainDivisions = [
     "Pharmaceutical", "Nutraceutical", "Cosmetic / Derma", "Surgical Equipment"
@@ -31,6 +34,14 @@ export default function AddProduct() {
   ];
 
   const allAvailableCategories = [...mainDivisions, ...therapeuticClasses];
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setImage(file);
+      setPreview(URL.createObjectURL(file));
+    }
+  };
 
   const addCategoryTag = (val) => {
     const value = typeof val === "string" ? val : categoryInput.trim();
@@ -52,6 +63,10 @@ export default function AddProduct() {
   };
 
   const submit = async () => {
+    if (!form.name || !image) {
+        return alert("Product name and image are mandatory!");
+    }
+
     try {
       const data = new FormData();
       Object.keys(form).forEach(key => {
@@ -61,22 +76,23 @@ export default function AddProduct() {
           data.append(key, form[key]);
         }
       });
-      if (image) data.append("image", image);
+      data.append("image", image);
 
-    // Points to your live Render backend
-await axios.post("https://client-web-dwcu.onrender.com/api/products/add", data);
+      await axios.post(`${API_BASE}/api/products/add`, data);
+      
       alert("Product Added Successfully!");
       
-      // FIX: Clean reset instead of window reload
+      // Reset form properly
       setForm({
         name: "", composition: "", strength: "", form: "", 
-        packaging: "", therapeuticUse: "", 
+        packaging: "", therapeuticUse: "", manufacturer: "",
         description: "", categories: []
       });
       setImage(null);
+      setPreview(null);
     } catch (err) {
       console.error(err);
-      alert("Error adding product");
+      alert("Error adding product. Check console.");
     }
   };
 
@@ -91,8 +107,7 @@ await axios.post("https://client-web-dwcu.onrender.com/api/products/add", data);
         <input placeholder="Form (Tablet/Syrup)" value={form.form} onChange={e => setForm({...form, form: e.target.value})} />
         <input placeholder="Packaging" value={form.packaging} onChange={e => setForm({...form, packaging: e.target.value})} />
         <input placeholder="Therapeutic Use" value={form.therapeuticUse} onChange={e => setForm({...form, therapeuticUse: e.target.value})} />
-        {/* FIX: Added Manufacturer Input */}
-       
+        <input placeholder="Manufacturer Name" value={form.manufacturer} onChange={e => setForm({...form, manufacturer: e.target.value})} />
       </div>
 
       <div className="category-manager">
@@ -111,7 +126,7 @@ await axios.post("https://client-web-dwcu.onrender.com/api/products/add", data);
           ))}
         </div>
 
-        <label style={{marginTop: '15px', display: 'block'}}>Therapeutic Tags:</label>
+        <label style={{marginTop: '15px', display: 'block'}}>Assigned Categories:</label>
         <div className="tags-display">
           {form.categories.map((cat, i) => (
             <span key={i} className="tag">
@@ -126,7 +141,7 @@ await axios.post("https://client-web-dwcu.onrender.com/api/products/add", data);
             value={categoryInput} 
             onChange={e => setCategoryInput(e.target.value)} 
             onKeyDown={handleKeyDown}
-            placeholder="Search category..."
+            placeholder="Search or type category..."
           />
           <datalist id="cat-defaults">
             {allAvailableCategories.map(c => <option key={c} value={c} />)}
@@ -135,15 +150,15 @@ await axios.post("https://client-web-dwcu.onrender.com/api/products/add", data);
         </div>
       </div>
 
-      <textarea placeholder="Product Description" value={form.description} onChange={e => setForm({...form, description: e.target.value})} />
+      <textarea placeholder="Product Description (Rich details...)" value={form.description} onChange={e => setForm({...form, description: e.target.value})} />
       
       <div className="file-input-group">
         <label>Product Image:</label>
-        <input type="file" onChange={e => setImage(e.target.files[0])} />
+        <input type="file" accept="image/*" onChange={handleImageChange} />
+        {preview && <img src={preview} alt="Preview" className="admin-img-preview" style={{width: '100px', marginTop: '10px', borderRadius: '8px'}} />}
       </div>
       
-      <button className="save-btn" onClick={submit}>Save Product </button>
+      <button className="save-btn" onClick={submit}>Save Product to Inventory</button>
     </div>
   );
 }
-
