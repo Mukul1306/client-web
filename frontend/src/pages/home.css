@@ -1074,3 +1074,33 @@
     font-size: 1.8rem;
   }
 }
+.certification-block {
+  /* 1. Basic Responsiveness */
+  width: 100%;            /* Fills the container width on mobile */
+  height: auto;           /* Maintains correct proportions */
+  display: block;         /* Removes bottom whitespace */
+  margin: 0 auto;         /* Centers the image if container is wider */
+
+  /* 2. Desktop Constraints */
+  max-width: 680px;      /* Prevents the image from getting too large on big screens */
+  
+  /* 3. Visual Quality */
+  padding: 20px;          /* Adds breathing room so it doesn't touch screen edges */
+  image-rendering: -webkit-optimize-contrast; /* Keeps text in the image sharp */
+  
+  /* 4. Smooth Interaction */
+  transition: transform 0.3s ease;
+}
+
+/* Tablet & Desktop Adjustments */
+@media (min-width: 768px) {
+  .certification-block {
+    padding: 40px;        /* More space for larger screens */
+  }
+}
+
+@media (min-width: 1024px) {
+  .certification-block:hover {
+    transform: scale(1.01); /* Subtle "lift" effect on hover for desktop */
+  }
+}

@@ -90,8 +90,8 @@ We aspire to create long-term value for the healthcare community by embracing sc
                
       <p>
            <h2>Business Values</h2>
-      Our Business Values
-### Business Values
+     
+ Business Values
 
 At Alyvra Pharma, our business values are the foundation upon which every strategy, decision, and operation is built. These principles are deeply embedded in the company’s culture and guide our interactions with healthcare professionals, partners, and stakeholders. By consistently adhering to these values, Alyvra Pharma ensures that it operates with integrity, accountability, and professionalism, creating a strong framework for sustainable growth and long-term credibility within the healthcare sector. Our values not only shape our internal processes but also define how we are perceived by the communities and institutions we serve.
 

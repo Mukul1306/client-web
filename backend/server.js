@@ -39,7 +39,7 @@ const upload = multer({ storage: storage });
 
   app.use(cors({
    origin: [
-    "https://lambent-cocada-14e0ee.netlify.app"
+    "https://alyvrapharma.com"
   ],
    
   methods: ["GET", "POST", "PUT", "DELETE"],

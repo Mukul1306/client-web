@@ -70,7 +70,7 @@ export default function Home() {
             <div className="intro-text">
               <span className="subtitle">Welcome to ALYVRA Pharma</span>
               <h1>Advancing Global Healthcare through Quality Excellence</h1>
-              <p>ALYVRA Pharma Private Limited is a premier pharmaceutical exporter from India...</p>
+              <p>ALYVRA Pharma Private Limited is a premier pharmaceutical exporter from India.</p>
             </div>
             <div className="intro-visual-card">
               <div className="floating-badge">ISO & GMP Certified</div>
@@ -272,12 +272,7 @@ Through our commitment to innovation, quality, and compliance, ALYVRA Pharma is 
       <GlobalPresenceSection compact />
 
       {/* ===== CERTIFICATION SECTION ===== */}
-      <div className="certification-block" style={{ borderTop: '1px solid #eee', paddingTop: '50px', textAlign: 'center' }}>
-        <h2>Our Facilities Accredited & Complied</h2>
-        <div style={{ width: '100%', overflow: 'hidden' }}>
-          <img src="/lincence.png" alt="Accreditations" style={{ width: '100%', maxWidth: '1000px', height: 'auto' }} />
-        </div>
-      </div>
+     
     </div>
   );
 }
